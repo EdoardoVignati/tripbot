@@ -1,0 +1,69 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript {
+  repositories { jcenter() }
+  dependencies {
+    classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.9'
+  }
+}
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'info.solidsoft.pitest'
+
+javadoc {
+    options {
+        links( 'http://docs.oracle.com/javase/8/docs/api/' )
+        encoding 'UTF-8'
+        docEncoding 'UTF-8'
+        charSet 'UTF-8'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco"
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "http://maven.restlet.org" }
+}
+
+dependencies {
+    compile 'org.restlet.jse:org.restlet:2.3.6'
+    compile 'org.restlet.jse:org.restlet.ext.jackson:2.3.6'
+    compile 'com.github.pengrad:java-telegram-bot-api:2.0.1'
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.github.stefanbirkner:system-rules:1.16.0'
+    testCompile 'org.mockito:mockito-core:1.+'
+}
+
+pitest {
+    targetClasses = [ "it.unimi.di.sweng.lab09.*" ]
+}
+
+shadowJar {
+    archiveName 'echobot.jar'
+}
+
+task stage() {
+    dependsOn clean, shadowJar
+}
+
+tasks.stage.doLast() {
+    delete 'build/classes'
+    delete 'build/dependency-cache'
+    delete 'build/tmp'
+    delete fileTree(dir: 'build/libs', exclude: '*.jar')
+}
+
+shadowJar.mustRunAfter clean
