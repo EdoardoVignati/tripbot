@@ -3,6 +3,7 @@ package it.unimi.di.sweng.tripbot.Geolocalization;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
 
 import it.unimi.di.sweng.tripbot.Configs;
 
@@ -15,8 +16,7 @@ public class LocationProvider implements ILocationService
 	public APosition getPositionByName(String streetName) throws Exception 
 	{
 		//geocoding
-		GeocodingResult[] matches =  GeocodingApi.geocode(context,streetName).await();
-		GeocodingResult result = matches[0];
+		GeocodingResult result = GeocodingApi.geocode(context,streetName).await()[0];
 		
 		if(result == null)
 			throw new Exception("No Results");
@@ -30,10 +30,21 @@ public class LocationProvider implements ILocationService
 	}
 
 	@Override
-	public APosition getPositionByCoordinates(double lat, double lon) 
+	public APosition getPositionByCoordinates(double lat, double lon) throws Exception 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		//reverse geocoding
+		LatLng location = new LatLng(lat, lon);
+		GeocodingResult result = GeocodingApi.reverseGeocode(context, location).await()[0];
+		
+		if(result == null)
+			throw new Exception("No Results");
+		
+		final String posName = result.formattedAddress;
+		final double posLat = result.geometry.location.lat;
+		final double posLon = result.geometry.location.lng;
+				
+		APosition position = new GmapsPosition(posLat, posLon, posName);
+		return position;
 	}
 
 	@Override

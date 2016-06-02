@@ -36,5 +36,19 @@ public class GeolocalizationTest {
 		APosition pos = loc.getPositionByName("Via Comelico, 14, Milano");
 		assertEquals("getPositionByName()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389", pos.toString());
 	}
+	
+	@Test
+	public void testGetPositionByCoordinates() throws Exception
+	{
+		ILocationService loc = new LocationProvider();
+		APosition pos = loc.getPositionByCoordinates(45.455030, 9.212389);
+		assertEquals("getPositionByCoordinates()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389", pos.toString());
+	}
+	
+	@Test
+	public void testGetPositionConcurrency()
+	{
+		
+	}
 
 }
