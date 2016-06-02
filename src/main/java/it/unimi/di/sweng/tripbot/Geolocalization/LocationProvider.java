@@ -50,8 +50,18 @@ public class LocationProvider implements ILocationService
 	@Override
 	public AMapLink getMapLink(APosition position) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		final String linkHeader = "https://www.google.it/maps/place/";
+		final String name = position.streetName;
+		String linkBody = "";
+		
+		final String[] nameWords = name.split("\\s");
+		for(String s : nameWords)
+		{
+			linkBody += s + "+";
+		}
+		String link = linkHeader + linkBody;
+		
+		return new GmapsLink(position.streetName, link);
 	}
 
 }

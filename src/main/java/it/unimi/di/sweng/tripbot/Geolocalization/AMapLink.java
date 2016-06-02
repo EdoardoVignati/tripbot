@@ -9,5 +9,9 @@ public abstract class AMapLink
 	{
 		locationName = name;
 		this.url = url;
+	}	
+	public String toString()
+	{
+		return url;
 	}
 }
