@@ -1,6 +1,6 @@
 package it.unimi.di.sweng.tripbot.Geolocalization;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
