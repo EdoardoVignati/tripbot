@@ -1,0 +1,10 @@
+language: java
+jdk: oraclejdk8
+before_install:
+  - curl -sLO https://raw.githubusercontent.com/rix0rrr/cover2cover/master/cover2cover.py
+before_script:
+  - mkdir -p shippable/codecoverage
+script: ./gradlew check jacocoTestReport
+after_script:
+  - cp -rv build/test-results shippable/testresults
+  - if [ -r build/reports/jacoco/test/jacocoTestReport.xml ]; then python cover2cover.py build/reports/jacoco/test/jacocoTestReport.xml src/main/java > shippable/codecoverage/coverage.xml; fi
