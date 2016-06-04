@@ -16,7 +16,9 @@ public enum SingletonModel implements IModel {
 	
 	@Override
 	public synchronized void insertNewPointOfInterest(PointOfInterest pointOfInterest) {
-		List<PointOfInterest> list = new ArrayList<PointOfInterest>();
+		List<PointOfInterest> list;
+		if ((list = POINTS_OF_INTEREST.get(pointOfInterest.groupId)) == null) 
+			list = new ArrayList<PointOfInterest>();
 		list.add(pointOfInterest);
 		POINTS_OF_INTEREST.put(pointOfInterest.groupId, list);
 	}

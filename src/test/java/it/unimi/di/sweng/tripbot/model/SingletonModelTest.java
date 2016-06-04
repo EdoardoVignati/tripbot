@@ -52,4 +52,17 @@ public class SingletonModelTest {
 		group1List.add(Mockito.mock(PointOfInterest.class));
 		assertEquals(1, SingletonModel.INSTANCE.getPointOfInterestList("1").size());
 	}
+	
+	@Test
+	public void multipleInsertionsTest() {
+		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
+		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
+		PointOfInterest museumB = new PointOfInterest("Museum B", futureDate, position, "1");
+		SingletonModel.INSTANCE.insertNewPointOfInterest(museumB);
+		assertEquals(1, SingletonModel.INSTANCE.getNumberOfGroups());
+		assertEquals(2, SingletonModel.INSTANCE.getPointOfInterestList("1").size());
+		PointOfInterest museumC = new PointOfInterest("Museum C", futureDate, position, "2");
+		SingletonModel.INSTANCE.insertNewPointOfInterest(museumC);
+		assertEquals(2, SingletonModel.INSTANCE.getNumberOfGroups());
+	}
 }
