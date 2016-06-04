@@ -85,7 +85,7 @@ public class SingletonModelTest {
 		SingletonModel.INSTANCE.getPointOfInterest("4", "A place");
 	}
 	
-	@Test
+	@Test(expected=NoSuchElementException.class)
 	public void removePointOfInterestTest() {
 		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
@@ -95,5 +95,7 @@ public class SingletonModelTest {
 		List<PointOfInterest> pointList = SingletonModel.INSTANCE.getPointOfInterestList("1");
 		assertTrue(pointList.contains(museumA));
 		assertFalse(pointList.contains(museumB));
+		SingletonModel.INSTANCE.removePointOfInterest("3", "Unexistent place");
+		SingletonModel.INSTANCE.getPointOfInterest("3", "Unexistent place");
 	}
 }
