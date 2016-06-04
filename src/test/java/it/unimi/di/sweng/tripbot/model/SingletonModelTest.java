@@ -20,11 +20,13 @@ import it.unimi.di.sweng.tripbot.PointOfInterest;
 public class SingletonModelTest {
 	private static DateFormat dateFormat;
 	private static GMapsPosition position;
+	private static Date futureDate;
 	
 	@BeforeClass
-	public static void globalSetUp() {
+	public static void globalSetUp() throws ParseException {
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
 		position = Mockito.mock(GMapsPosition.class);
+		futureDate = dateFormat.parse("2099-06-03-10.00.00");
 	}
 
 	@Before
@@ -34,9 +36,20 @@ public class SingletonModelTest {
 	
 	@Test
 	public void firstInsertionTest() throws ParseException {
-		Date date = dateFormat.parse("2016-06-03-10.00.00");
-		PointOfInterest museumA = new PointOfInterest("Museum A", date, position, "1");
+		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
-		assertEquals(1, SingletonModel.INSTANCE.size());
+		assertEquals(1, SingletonModel.INSTANCE.getNumberOfGroups());
+	}
+	
+	@Test
+	public void getPointOfInterestListTest() {
+		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
+		String pointOfInterestString = museumA.toString();
+		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
+		List<PointOfInterest> group1List = SingletonModel.INSTANCE.getPointOfInterestList("1");
+		assertEquals(1, group1List.size());
+		assertEquals("[" + pointOfInterestString + "]", group1List.toString());
+		group1List.add(Mockito.mock(PointOfInterest.class));
+		assertEquals(1, SingletonModel.INSTANCE.getPointOfInterestList("1").size());
 	}
 }

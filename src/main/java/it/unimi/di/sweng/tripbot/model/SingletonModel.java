@@ -29,8 +29,7 @@ public enum SingletonModel implements IModel {
 
 	@Override
 	public List<PointOfInterest> getPointOfInterestList(String groupId) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<PointOfInterest>(POINTS_OF_INTEREST.get(groupId));
 	}
 
 	@Override
@@ -44,7 +43,7 @@ public enum SingletonModel implements IModel {
 		POINTS_OF_INTEREST.putAll(newMap);
 	}
 	
-	public synchronized int size() {
+	public synchronized int getNumberOfGroups() {
 		return POINTS_OF_INTEREST.size();
 	}
 
