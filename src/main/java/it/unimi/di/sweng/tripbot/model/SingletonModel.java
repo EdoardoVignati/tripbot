@@ -47,11 +47,10 @@ public enum SingletonModel implements IModel {
 	@Override
 	public synchronized void removePointOfInterest(String groupId, String name) {
 		List<PointOfInterest> list = POINTS_OF_INTEREST.get(groupId);
-		if (list != null) {
+		if (list != null)
 			for (int i = 0; i < list.size(); i++) 
 				if (list.get(i).name.equals(name))
 					list.remove(i);
-		}
 	}
 	
 	public synchronized void loadMap(final Map<String, List<PointOfInterest>> newMap) {
