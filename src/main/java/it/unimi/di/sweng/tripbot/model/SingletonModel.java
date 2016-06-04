@@ -3,6 +3,7 @@ package it.unimi.di.sweng.tripbot.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 import it.unimi.di.sweng.tripbot.IModel;
@@ -24,13 +25,19 @@ public enum SingletonModel implements IModel {
 	}
 
 	@Override
-	public PointOfInterest getPointOfInterest(String groupId, String name) {
-		// TODO Auto-generated method stub
+	public synchronized PointOfInterest getPointOfInterest(String groupId, String name) {
+		List<PointOfInterest> list = POINTS_OF_INTEREST.get(groupId);
+		if (list == null)
+			throw new NoSuchElementException("Unexistent group with id " + groupId);
+		PointOfInterest pointOfInterest;
+		for (int i = 0; i < list.size(); i++)
+			if ((pointOfInterest = list.get(i)).name.equals(name))
+				return pointOfInterest;
 		return null;
 	}
 
 	@Override
-	public List<PointOfInterest> getPointOfInterestList(String groupId) {
+	public synchronized List<PointOfInterest> getPointOfInterestList(String groupId) {
 		List<PointOfInterest> list = POINTS_OF_INTEREST.get(groupId);
 		if (list == null)
 			return null;
@@ -38,7 +45,7 @@ public enum SingletonModel implements IModel {
 	}
 
 	@Override
-	public void removePointOfInterest(String groupId, String name) {
+	public synchronized void removePointOfInterest(String groupId, String name) {
 		// TODO Auto-generated method stub
 		
 	}

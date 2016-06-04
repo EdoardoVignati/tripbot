@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 import org.junit.Before;
@@ -69,5 +70,18 @@ public class SingletonModelTest {
 	@Test
 	public void nullPointOfInterestListTest() {
 		assertNull(SingletonModel.INSTANCE.getPointOfInterestList("3"));
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void getPointOfInterestTest() {
+		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
+		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
+		PointOfInterest museumB = new PointOfInterest("Museum B", futureDate, position, "1");
+		SingletonModel.INSTANCE.insertNewPointOfInterest(museumB);
+		PointOfInterest toFind = SingletonModel.INSTANCE.getPointOfInterest("1", "Museum B");
+		PointOfInterest unexistent = SingletonModel.INSTANCE.getPointOfInterest("1", "Musuem C");
+		assertEquals("Museum B", toFind.name);
+		assertNull(unexistent);
+		SingletonModel.INSTANCE.getPointOfInterest("4", "A place");
 	}
 }
