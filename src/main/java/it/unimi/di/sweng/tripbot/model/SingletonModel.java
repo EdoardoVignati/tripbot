@@ -31,7 +31,10 @@ public enum SingletonModel implements IModel {
 
 	@Override
 	public List<PointOfInterest> getPointOfInterestList(String groupId) {
-		return new ArrayList<PointOfInterest>(POINTS_OF_INTEREST.get(groupId));
+		List<PointOfInterest> list = POINTS_OF_INTEREST.get(groupId);
+		if (list == null)
+			return null;
+		return new ArrayList<PointOfInterest>(list);
 	}
 
 	@Override

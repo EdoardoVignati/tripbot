@@ -65,4 +65,9 @@ public class SingletonModelTest {
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumC);
 		assertEquals(2, SingletonModel.INSTANCE.getNumberOfGroups());
 	}
+	
+	@Test
+	public void nullPointOfInterestListTest() {
+		assertNull(SingletonModel.INSTANCE.getPointOfInterestList("3"));
+	}
 }
