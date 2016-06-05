@@ -28,4 +28,10 @@ public class CommandParserTest {
 
 		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
 	}
+	@Test
+	public void testSOS() {
+		final CommandParser PARSER = new CommandParser ("sos");
+
+		assertEquals(SOSManager.class, PARSER.dispatcher().getClass());
+	}
 }

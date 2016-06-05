@@ -16,6 +16,8 @@ public class CommandParser {
 			return new PRManager();
 		case "programma":
 			return new PRManager();
+		case "sos":
+			return new SOSManager();
 		default:
 			return null;
 		}
