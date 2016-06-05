@@ -16,4 +16,10 @@ public class CommandParserTest {
 
 		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
 	}
+	@Test
+	public void testProssimoRitrovo() {
+		final CommandParser PARSER = new CommandParser ("prossimo_ritrovo");
+
+		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
+	}
 }

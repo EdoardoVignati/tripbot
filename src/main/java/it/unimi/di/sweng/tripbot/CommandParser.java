@@ -12,6 +12,8 @@ public class CommandParser {
 		switch (command) {
 		case "set_punto_ritrovo":
 			return new PRManager();
+		case "prossimo_ritrovo":
+				return new PRManager();
 		default:
 			return null;
 		}
