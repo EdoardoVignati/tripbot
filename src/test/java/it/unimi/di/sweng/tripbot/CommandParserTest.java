@@ -22,4 +22,10 @@ public class CommandParserTest {
 
 		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
 	}
+	@Test
+	public void testProgramma() {
+		final CommandParser PARSER = new CommandParser ("programma");
+
+		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
+	}
 }

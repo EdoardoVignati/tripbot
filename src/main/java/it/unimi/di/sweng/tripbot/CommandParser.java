@@ -13,7 +13,9 @@ public class CommandParser {
 		case "set_punto_ritrovo":
 			return new PRManager();
 		case "prossimo_ritrovo":
-				return new PRManager();
+			return new PRManager();
+		case "programma":
+			return new PRManager();
 		default:
 			return null;
 		}
