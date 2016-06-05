@@ -34,4 +34,14 @@ public class CommandParserTest {
 
 		assertEquals(SOSManager.class, PARSER.dispatcher().getClass());
 	}
+	@Test
+	public void testHelpAndDefault() {
+		CommandParser PARSER = new CommandParser ("help");
+
+		assertEquals(HelpManager.class, PARSER.dispatcher().getClass());
+		
+		
+		PARSER = new CommandParser ("qualsiasi_altro_input");
+		assertEquals(HelpManager.class, PARSER.dispatcher().getClass());
+	}
 }

@@ -19,7 +19,7 @@ public class CommandParser {
 		case "sos":
 			return new SOSManager();
 		default:
-			return null;
+			return new HelpManager();
 		}
 	}
 
