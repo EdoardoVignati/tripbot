@@ -10,6 +10,8 @@ public class CommandParser {
 
 	public IFunctionality dispatcher() {
 		switch (command) {
+		case "start":
+			return new StartManager();
 		case "set_punto_ritrovo":
 			return new PRManager();
 		case "prossimo_ritrovo":
