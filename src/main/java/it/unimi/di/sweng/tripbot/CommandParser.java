@@ -1,5 +1,8 @@
 package it.unimi.di.sweng.tripbot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CommandParser {
 
 	private final String command;
@@ -9,20 +12,18 @@ public class CommandParser {
 	}
 
 	public IFunctionality dispatcher() {
-		switch (command) {
-		case "start":
-			return new StartManager();
-		case "set_punto_ritrovo":
-			return new PRManager();
-		case "prossimo_ritrovo":
-			return new PRManager();
-		case "programma":
-			return new PRManager();
-		case "sos":
-			return new SOSManager();
-		default:
+		Map<String, IFunctionality> dispatcher = new HashMap<String, IFunctionality>();
+
+		dispatcher.put("start", new StartManager());
+		dispatcher.put("set_punto_ritrovo", new PRManager());
+		dispatcher.put("prossimo_ritrovo", new PRManager());
+		dispatcher.put("programma", new PRManager());
+		dispatcher.put("sos", new SOSManager());
+
+		if (!dispatcher.containsKey(command))
 			return new HelpManager();
-		}
+
+		return dispatcher.get(command);
 	}
 
 }
