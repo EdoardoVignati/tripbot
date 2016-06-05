@@ -11,37 +11,39 @@ public class CommandParserTest {
 	@Rule
 	public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max
 
+	private CommandParser PARSER;
+	
 	@Test
 	public void testSetPuntoRitrovo() {
-		final CommandParser PARSER = new CommandParser("set_punto_ritrovo");
+		PARSER = new CommandParser("set_punto_ritrovo");
 
 		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testProssimoRitrovo() {
-		final CommandParser PARSER = new CommandParser("prossimo_ritrovo");
+		PARSER = new CommandParser("prossimo_ritrovo");
 
 		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testProgramma() {
-		final CommandParser PARSER = new CommandParser("programma");
+		PARSER = new CommandParser("programma");
 
 		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testSOS() {
-		final CommandParser PARSER = new CommandParser("sos");
+		PARSER = new CommandParser("sos");
 
 		assertEquals(SOSManager.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testHelpAndDefault() {
-		CommandParser PARSER = new CommandParser("help");
+		PARSER = new CommandParser("help");
 
 		assertEquals(HelpManager.class, PARSER.dispatcher().getClass());
 
@@ -51,7 +53,7 @@ public class CommandParserTest {
 
 	@Test
 	public void testStart() {
-		CommandParser PARSER = new CommandParser("start");
+		PARSER = new CommandParser("start");
 
 		assertEquals(StartManager.class, PARSER.dispatcher().getClass());
 	}
