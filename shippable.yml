@@ -1,5 +1,8 @@
 language: java
 jdk: oraclejdk8
+env:
+  global:
+    - secure: XXJ0gI6OwWUpqDpyyXO1xh7fW14EsJGwh2TWiW41qbJDeCxkbZZF5JSY7EKuNRVGnEJCrROPLkCbevM4Sk0SaC9MQzJQ9UhdQL+76ghKaP81yBNNBx6ZvAhHCOfQFuwtiiHnLrkV4HfeI8ywA8w9E8dp/7SbGe/A+saag7JUzck3W7e1W8XY9ae4QbgqRCu049szBb57+NBy8L4hHa84+Csh5g3H+iSvs0onG5V0JweqjfIrJoK4OEjd7p6QAASoxXF/kwmJWsk6dYNlhon+4HwqJt3vrK97PBjdn0j95RFfDixsX0e9bpfY27tIB51xgV+fY6mNzXH/Uf2XGj6dtw== 
 before_install:
   - curl -sLO https://raw.githubusercontent.com/rix0rrr/cover2cover/master/cover2cover.py
 before_script:
