@@ -40,7 +40,7 @@ public enum SingletonModel implements IModel {
 	public synchronized List<PointOfInterest> getPointOfInterestList(String groupId) {
 		List<PointOfInterest> list = POINTS_OF_INTEREST.get(groupId);
 		if (list == null)
-			return null;
+			throw new NoSuchElementException("Unexistent group with id " + groupId);
 		return new ArrayList<PointOfInterest>(list);
 	}
 
@@ -51,6 +51,7 @@ public enum SingletonModel implements IModel {
 			for (int i = 0; i < list.size(); i++) 
 				if (list.get(i).name.equals(name))
 					list.remove(i);
+		throw new NoSuchElementException("Unexistent group with id " + groupId);
 	}
 	
 	public synchronized void loadMap(final Map<String, List<PointOfInterest>> newMap) {

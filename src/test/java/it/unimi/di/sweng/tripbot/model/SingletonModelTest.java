@@ -67,9 +67,9 @@ public class SingletonModelTest {
 		assertEquals(2, SingletonModel.INSTANCE.getNumberOfGroups());
 	}
 	
-	@Test
+	@Test(expected = NoSuchElementException.class)
 	public void nullPointOfInterestListTest() {
-		assertNull(SingletonModel.INSTANCE.getPointOfInterestList("3"));
+		SingletonModel.INSTANCE.getPointOfInterestList("3");
 	}
 	
 	@Test(expected=NoSuchElementException.class)
@@ -96,6 +96,5 @@ public class SingletonModelTest {
 		assertTrue(pointList.contains(museumA));
 		assertFalse(pointList.contains(museumB));
 		SingletonModel.INSTANCE.removePointOfInterest("3", "Unexistent place");
-		SingletonModel.INSTANCE.getPointOfInterest("3", "Unexistent place");
 	}
 }
