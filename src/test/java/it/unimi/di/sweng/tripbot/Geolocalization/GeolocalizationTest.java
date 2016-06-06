@@ -14,12 +14,13 @@ public class GeolocalizationTest {
 		int port = Configs.INSTANCE.PORT;
 		String googleToken = Configs.INSTANCE.GOOGLE_TOKEN;
 		String telegramServerToken = Configs.INSTANCE.SERVER_TOKEN;
-		String telegramBotToken = Configs.INSTANCE.BOT_TOKEN;
+		String telegramBotToken = Configs.INSTANCE.BOT_TOKEN;		
 		
 		System.err.println(port);
 		System.err.println(googleToken);
 		System.err.println(telegramServerToken);
 		System.err.println(telegramBotToken);
+		
 	}
 	
 	@Test
@@ -37,11 +38,27 @@ public class GeolocalizationTest {
 		assertEquals("getPositionByName()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389", pos.toString());
 	}
 	
+	@Test(expected = Exception.class)
+	public void testGetPositionByNameNoResult() throws Exception
+	{
+		ILocationService loc = new LocationProvider();
+		APosition pos = loc.getPositionByName("ksfhskefhksjhksjfhksj");
+		assertEquals("getPositionByName()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389", pos.toString());
+	}
+	
 	@Test
 	public void testGetPositionByCoordinates() throws Exception
 	{
 		ILocationService loc = new LocationProvider();
 		APosition pos = loc.getPositionByCoordinates(45.455030, 9.212389);
+		assertEquals("getPositionByCoordinates()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389", pos.toString());
+	}
+	
+	@Test(expected = Exception.class)
+	public void testGetPositionByCoordinatesNoResult() throws Exception
+	{
+		ILocationService loc = new LocationProvider();
+		APosition pos = loc.getPositionByCoordinates(789,432);
 		assertEquals("getPositionByCoordinates()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389", pos.toString());
 	}
 	

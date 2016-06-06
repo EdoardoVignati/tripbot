@@ -16,10 +16,16 @@ public class LocationProvider implements ILocationService
 	public APosition getPositionByName(String streetName) throws Exception 
 	{
 		//geocoding
-		GeocodingResult result = GeocodingApi.geocode(context,streetName).await()[0];
-		
-		if(result == null)
+		GeocodingResult result;
+		try 
+		{
+			result = GeocodingApi.geocode(context, streetName).await()[0];
+		} catch (Exception e) 
+		{
+			System.err.println("No Results Exception - getPositionByName");
 			throw new Exception("No Results");
+		}
+			
 		
 		final String posName = result.formattedAddress;
 		final double posLat = result.geometry.location.lat;
@@ -33,12 +39,17 @@ public class LocationProvider implements ILocationService
 	public APosition getPositionByCoordinates(double lat, double lon) throws Exception 
 	{
 		//reverse geocoding
-		LatLng location = new LatLng(lat, lon);
-		GeocodingResult result = GeocodingApi.reverseGeocode(context, location).await()[0];
-		
-		if(result == null)
+		GeocodingResult result;
+		try 
+		{
+			LatLng location = new LatLng(lat, lon);
+			result = GeocodingApi.reverseGeocode(context, location).await()[0];
+		} catch (Exception e) 
+		{
+			System.err.println("No Results Exception - getPositionByCoordinates");
 			throw new Exception("No Results");
-		
+		}
+						
 		final String posName = result.formattedAddress;
 		final double posLat = result.geometry.location.lat;
 		final double posLon = result.geometry.location.lng;
