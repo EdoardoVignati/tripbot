@@ -10,12 +10,13 @@ public enum Configs {
 	public final int PORT;
 	public final String SERVER_TOKEN;
 	public final String BOT_TOKEN;
+	public final String GOOGLE_TOKEN;
 
 	private Configs() {
-		PORT = Integer.parseInt(System.getenv("PORT"));
+		PORT = Integer.parseInt(System.getenv("SERVER_PORT"));
 		SERVER_TOKEN = System.getenv("TELEGRAM_SERVER_TOKEN");
 		BOT_TOKEN = System.getenv("TELEGRAM_BOT_TOKEN");
-
+		GOOGLE_TOKEN = System.getenv("GOOGLE_API_TOKEN");
 	}
 
 }
