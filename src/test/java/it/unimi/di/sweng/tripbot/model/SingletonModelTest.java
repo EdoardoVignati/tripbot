@@ -15,18 +15,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import it.unimi.di.sweng.tripbot.GMapsPosition;
 import it.unimi.di.sweng.tripbot.PointOfInterest;
+import it.unimi.di.sweng.tripbot.Geolocalization.GmapsPosition;
 
 public class SingletonModelTest {
 	private static DateFormat dateFormat;
-	private static GMapsPosition position;
+	private static GmapsPosition position;
 	private static Date futureDate;
 	
 	@BeforeClass
 	public static void globalSetUp() throws ParseException {
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
-		position = Mockito.mock(GMapsPosition.class);
+		position = Mockito.mock(GmapsPosition.class);
 		futureDate = dateFormat.parse("2099-06-03-10.00.00");
 	}
 

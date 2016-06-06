@@ -12,6 +12,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import it.unimi.di.sweng.tripbot.Geolocalization.GmapsPosition;
+
 public class PointOfInterestTest {
 	
 	@BeforeClass
@@ -23,7 +25,7 @@ public class PointOfInterestTest {
 	public void pointOfInterestTest() throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
 		Date date = dateFormat.parse("2016-06-03-09.00.00");
-		GMapsPosition mockPosition = Mockito.mock(GMapsPosition.class);
+		GmapsPosition mockPosition = Mockito.mock(GmapsPosition.class);
 		Mockito.when(mockPosition.toString()).thenReturn("fake-position");
 		String expectedOutput = 
 				"Location: Museum A\nDate: Fri Jun 03 09:00:00 UTC 2016\nPosition: fake-position\nGroup ID: 1";
