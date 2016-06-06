@@ -16,8 +16,8 @@ public class CommandParser {
 
 		dispatcher.put("start", new StartManager());
 		dispatcher.put("set_punto_ritrovo", new PRSet());
-		dispatcher.put("prossimo_ritrovo", new PRSet());
-		dispatcher.put("programma", new PRSet());
+		dispatcher.put("prossimo_ritrovo", new PRNext());
+		dispatcher.put("programma", new PRAll());
 		dispatcher.put("sos", new SOS());
 
 		if (!dispatcher.containsKey(command))

@@ -24,14 +24,14 @@ public class CommandParserTest {
 	public void testProssimoRitrovo() {
 		PARSER = new CommandParser("prossimo_ritrovo");
 
-		assertEquals(PRSet.class, PARSER.dispatcher().getClass());
+		assertEquals(PRNext.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testProgramma() {
 		PARSER = new CommandParser("programma");
 
-		assertEquals(PRSet.class, PARSER.dispatcher().getClass());
+		assertEquals(PRAll.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
