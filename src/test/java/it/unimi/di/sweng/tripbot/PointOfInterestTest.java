@@ -1,11 +1,10 @@
 package it.unimi.di.sweng.tripbot;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -16,7 +15,7 @@ import org.mockito.Mockito;
 import it.unimi.di.sweng.tripbot.Geolocalization.GmapsPosition;
 
 public class PointOfInterestTest {
-	
+
 	@BeforeClass
 	public static void setUpTimeZone() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
@@ -25,7 +24,6 @@ public class PointOfInterestTest {
 	@Test
 	public void pointOfInterestTest() throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
-		TimeZone.setDefault(TimeZone.getTimeZone("Europe/Rome"));
 		Date date = dateFormat.parse("2016-06-03-09.00.00");
 		GmapsPosition mockPosition = Mockito.mock(GmapsPosition.class);
 		Mockito.when(mockPosition.toString()).thenReturn("fake-position");
