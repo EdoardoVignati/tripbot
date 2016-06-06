@@ -6,11 +6,18 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class PointOfInterestTest {
+	
+	@BeforeClass
+	public static void setUpTimeZone() {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
 
 	@Test
 	public void pointOfInterestTest() throws ParseException {
@@ -19,7 +26,7 @@ public class PointOfInterestTest {
 		GMapsPosition mockPosition = Mockito.mock(GMapsPosition.class);
 		Mockito.when(mockPosition.toString()).thenReturn("fake-position");
 		String expectedOutput = 
-				"Location: Museum A\nDate: Fri Jun 03 09:00:00 CEST 2016\nPosition: fake-position\nGroup ID: 1";
+				"Location: Museum A\nDate: Fri Jun 03 09:00:00 UTC 2016\nPosition: fake-position\nGroup ID: 1";
 		PointOfInterest pointOfInterest = new PointOfInterest("Museum A", date, mockPosition, "1");
 		assertEquals(expectedOutput, pointOfInterest.toString());
 	}
