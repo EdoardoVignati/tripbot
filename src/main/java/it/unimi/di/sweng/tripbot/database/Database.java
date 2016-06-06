@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-		
-	public Connection connect(String url) throws SQLException{
-		Connection conn = DriverManager.getConnection(url);
-		return conn;
-		
+	
+	Connection conn;
+	
+	public Database(String url) throws SQLException{
+		conn = DriverManager.getConnection(url);		
 	}	
-
+	
 }
