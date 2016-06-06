@@ -1,10 +1,11 @@
 package it.unimi.di.sweng.tripbot;
 
+import com.pengrad.telegrambot.model.Message;
+
 public class StartManager implements IFunctionality {
 
 	@Override
-	public String exec(String dumpMessage) {
-		// TODO Auto-generated method stub
+	public String exec(Message message) {
 		return null;
 	}
 
