@@ -17,6 +17,7 @@ public class PRSet implements IFunctionality {
 			output += " " + datiMessaggio[i];
 		
 		return "punto di ritrovo '" + output.trim() + "' impostato";
+		
 	}
 
 }

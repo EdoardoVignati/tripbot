@@ -20,11 +20,11 @@ public class PRSetTest {
 	@Test
 	public void testPRSet() throws Exception {
 		
-		Mockito.when(myMessage.text()).thenReturn("/comando3 luogo1 data1 03:00");
+		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
 		
 		final IFunctionality myPR = new PRSet();
 		final String outputString = myPR.exec(myMessage);
-		assertEquals("punto di ritrovo 'luogo1 data1 03:00' impostato", outputString);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/08/2016 15:43' impostato", outputString);
 		
 	}
 
