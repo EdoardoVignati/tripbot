@@ -47,11 +47,12 @@ public enum SingletonModel implements IModel {
 	@Override
 	public synchronized void removePointOfInterest(String groupId, String name) {
 		List<PointOfInterest> list = POINTS_OF_INTEREST.get(groupId);
-		if (list != null)
+		if (list != null) {
 			for (int i = 0; i < list.size(); i++) 
 				if (list.get(i).name.equals(name))
 					list.remove(i);
-		throw new NoSuchElementException("Unexistent group with id " + groupId);
+		} else
+			throw new NoSuchElementException("Unexistent group with id " + groupId);
 	}
 	
 	public synchronized void loadMap(final Map<String, List<PointOfInterest>> newMap) {
