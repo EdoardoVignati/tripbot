@@ -7,7 +7,7 @@ public class PointOfInterest {
 	public final String name;
 	public final Date meetDate;
 	public final String groupId;
-	protected final GmapsPosition position;
+	public final GmapsPosition position;
 	
 	public PointOfInterest(final String name, final Date meetDate, final GmapsPosition position, final String groupId) {
 		this.name = name;
