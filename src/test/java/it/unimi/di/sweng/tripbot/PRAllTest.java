@@ -51,5 +51,35 @@ public class PRAllTest {
 		assertEquals(expectedOutput, outputString3);
 		
 	}
+	
+	@Test
+	public void testPRAllOrder() throws Exception {
+		
+		Mockito.when(myMessage.text()).thenReturn(
+				"/set_punto_ritrovo Via terrazzano, 14 Rho 07/10/2016 15:43",
+				"/set_punto_ritrovo Via terrazzano, 14 Rho 02/08/2016 15:43",
+				"/set_punto_ritrovo Via terrazzano, 14 Rho 01/09/2016 15:43",
+				"/programma");
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long)-3);
+		
+		final IFunctionality myPRSet = new PRSet();
+		final String outputString = myPRSet.exec(myMessage);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/10/2016 15:43' impostato", outputString);
+		final String outputString2 = myPRSet.exec(myMessage);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 02/08/2016 15:43' impostato", outputString2);
+		final String outputString3 = myPRSet.exec(myMessage);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 01/09/2016 15:43' impostato", outputString3);
+		
+		final IFunctionality myPR = new PRAll();
+		final String outputString4 = myPR.exec(myMessage);
+		final String expectedOutput =
+				"Il programma del viaggio e' il seguente:\n"+
+				"- Via terrazzano, 14 Rho 02/08/2016 15:43\n"+
+				"- Via terrazzano, 14 Rho 01/09/2016 15:43\n"+
+				"- Via terrazzano, 14 Rho 07/10/2016 15:43\n";
+		assertEquals(expectedOutput, outputString4);
+		
+	}
 		
 }
