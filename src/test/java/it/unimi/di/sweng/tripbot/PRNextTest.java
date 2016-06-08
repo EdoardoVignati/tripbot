@@ -86,5 +86,32 @@ public class PRNextTest {
 		assertEquals("formato input non corretto", outputString2);
 		
 	}
+	
+	@Test
+	public void testPRGetNextWhenMore() throws Exception {
+		
+		Mockito.when(myMessage.text()).thenReturn(
+				"/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/set_punto_ritrovo Via terrazzano, 14 Rho 06/08/2016 15:43",
+				"/set_punto_ritrovo Via terrazzano, 14 Rho 09/08/2016 15:43",
+				"/prossimo_ritrovo");
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long)-3);
+		
+		final IFunctionality myPRSet = new PRSet();
+		final String outputString = myPRSet.exec(myMessage);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/08/2016 15:43' impostato", outputString);
+		
+		final String outputString2 = myPRSet.exec(myMessage);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 06/08/2016 15:43' impostato", outputString2);
+		
+		final String outputString3 = myPRSet.exec(myMessage);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 09/08/2016 15:43' impostato", outputString3);
+		
+		final IFunctionality myPRNext = new PRNext();
+		final String outputString4 = myPRNext.exec(myMessage);
+		assertEquals("il prossimo punto di ritrovo e': Via terrazzano, 14 Rho 06/08/2016 15:43", outputString4);
+		
+	}
 		
 }
