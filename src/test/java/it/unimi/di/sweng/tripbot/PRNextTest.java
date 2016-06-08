@@ -47,5 +47,22 @@ public class PRNextTest {
 		assertEquals("il prossimo punto di ritrovo e': Via terrazzano, 14 Rho 07/08/2016 15:43", outputString2);
 		
 	}
+	
+	@Test
+	public void testPRNextNotExist() throws Exception {
+		
+		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2011 15:43", "/prossimo_ritrovo");
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long)-5);
+		
+		final IFunctionality myPRSet = new PRSet();
+		final String outputString = myPRSet.exec(myMessage);
+		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/08/2011 15:43' impostato", outputString);
+		
+		final IFunctionality myPRNext = new PRNext();
+		final String outputString2 = myPRNext.exec(myMessage);
+		assertEquals("non sono previsti altri punti di ritrovo", outputString2);
+		
+	}
 		
 }
