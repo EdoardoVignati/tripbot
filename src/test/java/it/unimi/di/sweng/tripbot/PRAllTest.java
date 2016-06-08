@@ -81,5 +81,16 @@ public class PRAllTest {
 		assertEquals(expectedOutput, outputString4);
 		
 	}
+	
+	@Test
+	public void testPRAllInputError() throws Exception {
+		
+		Mockito.when(myMessage.text()).thenReturn("/comando_errato");
+		
+		final IFunctionality myPR = new PRAll();
+		final String outputString = myPR.exec(myMessage);
+		assertEquals("formato input non corretto", outputString);
+		
+	}
 		
 }
