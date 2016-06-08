@@ -1,4 +1,4 @@
-package it.unimi.di.sweng.echobot;
+package it.unimi.di.sweng.tripbot;
 
 import java.io.IOException;
 
@@ -17,20 +17,16 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 
 public class BotResource extends ServerResource {
-	
+
 	@Post
 	public Representation update(Representation data) throws IOException {
 
-		// check that Telegram is using the server token
-		
 		final String token = getAttribute("token");
 		if (!Configs.INSTANCE.SERVER_TOKEN.equals(token)) {
-			setStatus(Status.CLIENT_ERROR_FORBIDDEN, "Worng server token");
+			setStatus(Status.CLIENT_ERROR_FORBIDDEN, "Wrong server token");
 			return null;
 		}
-		
-		// get the update and try to parse it
-		
+
 		final Update update = BotUtils.parseUpdate(data.getText());
 		if (update.updateId() == null) {
 			getLogger().warning("Can't parse update, text was: \"" + data.getText() + "\"");
@@ -38,19 +34,26 @@ public class BotResource extends ServerResource {
 			return null;
 		}
 		getLogger().info("<= " + update);
-		
-		// get the message from the update and prepare the answer
-		
+
 		final Message message = update.message();
 		final Chat chat = message.chat();
-		final String answer = "Ciao " + chat.firstName() + ", il tuo ultimo messaggio è stato: \"" + message.text() + "\"";
+		final Integer entitylenght;
 
-		// sent the answer to Telegram
-		
+		if (message.entities() == null) {
+			getLogger().warning("Inserire un comando");
+			setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
+					"Inserisci un comando valido controlla /help per i comandi disponibili");
+			return null;
+		} else
+			entitylenght = message.entities()[0].length();
+
+		CommandParser cp = new CommandParser(message.text().substring(1, entitylenght));
+		final String answer = cp.dispatcher().exec(message);
+
 		final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);
 		final SendResponse response = bot.execute(new SendMessage(chat.id(), answer));
 		getLogger().info("=> " + response);
-		
+
 		return null;
 	}
 

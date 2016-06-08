@@ -1,4 +1,4 @@
-package it.unimi.di.sweng.echobot;
+package it.unimi.di.sweng.tripbot;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.TelegramBotAdapter;
