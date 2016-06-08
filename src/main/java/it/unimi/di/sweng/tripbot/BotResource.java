@@ -48,7 +48,7 @@ public class BotResource extends ServerResource {
 			entitylenght = message.entities()[0].length();
 
 		CommandParser cp = new CommandParser(message.text().substring(1, entitylenght));
-		final String answer = cp.dispatcher().exec(message.chat().id() + " " + message.text().substring(entitylenght));
+		final String answer = cp.dispatcher().exec(message);
 
 		final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);
 		final SendResponse response = bot.execute(new SendMessage(chat.id(), answer));
