@@ -1,15 +1,16 @@
 package it.unimi.di.sweng.tripbot;
 
 import java.util.Date;
-import it.unimi.di.sweng.tripbot.Geolocalization.GmapsPosition;
+
+import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
 
 public class PointOfInterest {
 	public final String name;
 	public final Date meetDate;
 	public final String groupId;
-	public final GmapsPosition position;
+	public final APosition position;
 	
-	public PointOfInterest(final String name, final Date meetDate, final GmapsPosition position, final String groupId) {
+	public PointOfInterest(final String name, final Date meetDate, final APosition position, final String groupId) {
 		this.name = name;
 		this.meetDate = meetDate;
 		this.position = position;
