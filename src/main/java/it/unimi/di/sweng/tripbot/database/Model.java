@@ -8,9 +8,13 @@ import java.util.List;
 
 import it.unimi.di.sweng.tripbot.IModel;
 import it.unimi.di.sweng.tripbot.PointOfInterest;
+import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
+import it.unimi.di.sweng.tripbot.Geolocalization.LocationProvider;
 
 public class Model implements IModel{
-	Database db;
+	private Database db;
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	
 	public Model(){
 		try {
 			db = new Database(System.getenv("JDBC_DATABASE_URL"));
@@ -26,7 +30,6 @@ public class Model implements IModel{
 		poi = pointOfInterest.name;
 		address = pointOfInterest.position.toString();
 		Date meet_date = pointOfInterest.meetDate;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String dateString = dateFormat.format(meet_date);
 		try {
 			db.execQuery("INSERT INTO trips(chat_id, poi, address, meet_date) VALUES('"+chat_id+"','"+poi+"','"+address+"','"+dateString+"');");
@@ -37,7 +40,20 @@ public class Model implements IModel{
 
 	@Override
 	public PointOfInterest getPointOfInterest(String groupId, String name) {
-		// TODO Auto-generated method stub
+		Date meetDate;
+		APosition position;
+		ResultSet rs;
+		try {
+			rs = db.execQuery("SELECT address, meet_date FROM trips WHERE chat_id='"+groupId+"' AND poi='"+name+"';");
+			if(rs.next()){
+				meetDate = rs.getTimestamp("meet_date");
+				position = (new LocationProvider().getPositionByName(rs.getString("address").split(":|\\;")[1]));
+				rs.close();
+				return new PointOfInterest(name, meetDate, position, groupId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 		return null;
 	}
 
