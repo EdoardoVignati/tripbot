@@ -2,10 +2,11 @@ package it.unimi.di.sweng.tripbot.Geolocalization;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import it.unimi.di.sweng.tripbot.Configs;
-
+@Ignore
 public class GeolocalizationTest {
 
 	@Test

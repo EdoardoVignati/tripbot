@@ -15,3 +15,4 @@ script: ./gradlew check jacocoTestReport
 after_script:
   - cp -rv build/test-results shippable/testresults
   - if [ -r build/reports/jacoco/test/jacocoTestReport.xml ]; then python cover2cover.py build/reports/jacoco/test/jacocoTestReport.xml src/main/java > shippable/codecoverage/coverage.xml; fi
+

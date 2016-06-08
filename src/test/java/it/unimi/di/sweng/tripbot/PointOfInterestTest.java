@@ -1,6 +1,6 @@
 package it.unimi.di.sweng.tripbot;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,7 +15,7 @@ import org.mockito.Mockito;
 import it.unimi.di.sweng.tripbot.Geolocalization.GmapsPosition;
 
 public class PointOfInterestTest {
-	
+
 	@BeforeClass
 	public static void setUpTimeZone() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
