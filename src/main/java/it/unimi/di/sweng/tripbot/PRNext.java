@@ -54,6 +54,7 @@ public class PRNext implements IFunctionality {
 		}
 		
 		return "non sono previsti altri punti di ritrovo";
+		
 	}
 
 }

@@ -64,5 +64,16 @@ public class PRNextTest {
 		assertEquals("non sono previsti altri punti di ritrovo", outputString2);
 		
 	}
+	
+	@Test
+	public void testPRNextErrorCommand() throws Exception {
+		
+		Mockito.when(myMessage.text()).thenReturn("/comando_inesistente");
+		
+		final IFunctionality myPRNext = new PRNext();
+		final String outputString2 = myPRNext.exec(myMessage);
+		assertEquals("formato input non corretto", outputString2);
+		
+	}
 		
 }
