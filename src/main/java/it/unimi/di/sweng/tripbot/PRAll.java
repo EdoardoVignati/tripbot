@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.pengrad.telegrambot.model.Message;
 
@@ -16,15 +14,11 @@ public class PRAll implements IFunctionality {
 	@Override
 	public String exec(Message message) {
 		
-		final String pattern = "(\\/programma)";
+		final String pattern = "/programma";
 		
-		final String testoMessaggio = message.text();
-		
-	    final Pattern myPattern = Pattern.compile(pattern);
-
-	    final Matcher myRegExpMatcher = myPattern.matcher(testoMessaggio);
+		final String testoMessaggio = message.text().trim();
 	    
-	    if ( !myRegExpMatcher.find() )
+	    if ( ! testoMessaggio.equals(pattern) )
 	    	return "formato input non corretto";
 	    
 	    final String groupID = message.chat().id().toString();
