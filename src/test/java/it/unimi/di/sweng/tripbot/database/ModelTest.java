@@ -1,6 +1,7 @@
 package it.unimi.di.sweng.tripbot.database;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -79,5 +80,39 @@ public class ModelTest {
 		model.removePointOfInterest("123", "Duomo");
 		
 		assertNull(model.getPointOfInterest("123", "Duomo"));
+	}
+	
+	@Test
+	public void getListPOITest() throws Exception {	
+		Model model = new Model();
+		List<PointOfInterest> pointList;
+		
+		Date meetDate = dateFormat.parse("2016-06-03 10:00:00");
+		APosition position = (new LocationProvider().getPositionByName("Piazza Duomo Milano"));	
+		PointOfInterest p1 = new PointOfInterest("Duomo", meetDate, position, "123");
+		model.insertNewPointOfInterest(p1);
+		
+		meetDate = dateFormat.parse("2016-06-04 10:00:00");
+		position = (new LocationProvider().getPositionByName("Piazza San Babila Milano"));	
+		p1 = new PointOfInterest("San Babila", meetDate, position, "123");
+		model.insertNewPointOfInterest(p1);
+		
+		meetDate = dateFormat.parse("2016-06-05 10:00:00");
+		position = (new LocationProvider().getPositionByName("Piazzale Loreto Milano"));	
+		p1 = new PointOfInterest("Loreto", meetDate, position, "123");
+		model.insertNewPointOfInterest(p1);
+		
+		pointList = model.getPointOfInterestList("123");
+		System.out.println(pointList.get(0).toString());
+		System.out.println(pointList.get(1).toString());
+		System.out.println(pointList.get(2).toString());
+		
+		assertEquals(pointList.get(0).name, "Duomo");
+		assertEquals(pointList.get(1).name, "San Babila");
+		assertEquals(pointList.get(2).name, "Loreto");
+		
+		model.removePointOfInterest("123", "Duomo");
+		model.removePointOfInterest("123", "San Babila");
+		model.removePointOfInterest("123", "Loreto");
 	}
 }
