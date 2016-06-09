@@ -103,9 +103,6 @@ public class ModelTest {
 		model.insertNewPointOfInterest(p1);
 		
 		pointList = model.getPointOfInterestList("123");
-		System.out.println(pointList.get(0).toString());
-		System.out.println(pointList.get(1).toString());
-		System.out.println(pointList.get(2).toString());
 		
 		assertEquals(pointList.get(0).name, "Duomo");
 		assertEquals(pointList.get(1).name, "San Babila");
