@@ -1,5 +1,7 @@
 package it.unimi.di.sweng.tripbot;
 
+import java.util.Locale;
+
 /**
  * Contiene le configurazioni del <em>bot</em> lette dalle variabili d'ambiente.
  *
@@ -13,11 +15,11 @@ public enum Configs {
 	public final String GOOGLE_TOKEN;
 
 	private Configs() {
+		Locale.setDefault(Locale.US);	
 		PORT = Integer.parseInt(System.getenv("SERVER_PORT"));
 		SERVER_TOKEN = System.getenv("TELEGRAM_SERVER_TOKEN");
 		BOT_TOKEN = System.getenv("TELEGRAM_BOT_TOKEN");
 		GOOGLE_TOKEN = System.getenv("GOOGLE_API_TOKEN");
-		
 	}
 
 }

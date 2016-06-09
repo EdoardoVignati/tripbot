@@ -1,7 +1,6 @@
 package it.unimi.di.sweng.tripbot;
 
 import java.util.Date;
-
 import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
 
 public class PointOfInterest {

@@ -15,10 +15,10 @@ public class CommandParser {
 		Map<String, IFunctionality> dispatcher = new HashMap<String, IFunctionality>();
 
 		dispatcher.put("start", new StartManager());
-		dispatcher.put("set_punto_ritrovo", new PRManager());
-		dispatcher.put("prossimo_ritrovo", new PRManager());
-		dispatcher.put("programma", new PRManager());
-		dispatcher.put("sos", new SOSManager());
+		dispatcher.put("set_punto_ritrovo", new PRSet());
+		dispatcher.put("prossimo_ritrovo", new PRNext());
+		dispatcher.put("programma", new PRAll());
+		dispatcher.put("sos", new SOS());
 
 		if (!dispatcher.containsKey(command))
 			return new HelpManager();

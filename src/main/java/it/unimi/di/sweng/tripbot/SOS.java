@@ -2,7 +2,7 @@ package it.unimi.di.sweng.tripbot;
 
 import com.pengrad.telegrambot.model.Message;
 
-public class HelpManager implements IFunctionality {
+public class SOS implements IFunctionality {
 
 	@Override
 	public String exec(Message dumpMessage) {

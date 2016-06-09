@@ -17,28 +17,28 @@ public class CommandParserTest {
 	public void testSetPuntoRitrovo() {
 		PARSER = new CommandParser("set_punto_ritrovo");
 
-		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
+		assertEquals(PRSet.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testProssimoRitrovo() {
 		PARSER = new CommandParser("prossimo_ritrovo");
 
-		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
+		assertEquals(PRNext.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testProgramma() {
 		PARSER = new CommandParser("programma");
 
-		assertEquals(PRManager.class, PARSER.dispatcher().getClass());
+		assertEquals(PRAll.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testSOS() {
 		PARSER = new CommandParser("sos");
 
-		assertEquals(SOSManager.class, PARSER.dispatcher().getClass());
+		assertEquals(SOS.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
