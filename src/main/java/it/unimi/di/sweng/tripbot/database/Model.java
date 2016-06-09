@@ -20,7 +20,7 @@ public class Model implements IModel{
 		try {
 			db = new Database(System.getenv("JDBC_DATABASE_URL"));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Errore connessione database");
 		}
 	}
 	
@@ -35,7 +35,7 @@ public class Model implements IModel{
 		try {
 			db.execQuery("INSERT INTO trips(chat_id, poi, address, meet_date) VALUES('"+chat_id+"','"+poi+"','"+address+"','"+dateString+"');");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Errore query database");
 		}		
 	}
 
@@ -53,7 +53,7 @@ public class Model implements IModel{
 				return new PointOfInterest(name, meetDate, position, groupId);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Errore query database");
 		} 
 		return null;
 	}
@@ -66,7 +66,7 @@ public class Model implements IModel{
 		Date meetDate;		
 		ResultSet rs;
 		try {
-			rs = db.execQuery("SELECT meet_date, poi, address FROM trips WHERE chat_id='" + groupId+"' ORDER BY meet_date;");
+			rs = db.execQuery("SELECT meet_date, poi, address FROM trips WHERE chat_id='" + groupId+"';");
 			while(rs.next()){
 				name = rs.getString("poi");
 				position = (new LocationProvider().getPositionByName(rs.getString("address").split(":|\\;")[1]));
@@ -75,7 +75,7 @@ public class Model implements IModel{
 			}
 			rs.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Errore query database");
 		} 		
 		return pointList;
 	}
@@ -85,7 +85,7 @@ public class Model implements IModel{
 		try {
 			db.execQuery("DELETE FROM trips WHERE chat_id='"+groupId+"' AND poi='"+name+"';");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Errore query database");
 		}		
 	}
 
