@@ -2,6 +2,10 @@ package it.unimi.di.sweng.tripbot;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.TreeMap;
+
+import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
@@ -10,11 +14,18 @@ import org.mockito.Mockito;
 import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
 
+import it.unimi.di.sweng.tripbot.model.SingletonModel;
+
 
 public class PRSetTest {
 
 	@Rule
 	public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max
+	
+	@AfterClass
+	public static void flushModel() {
+		SingletonModel.INSTANCE.loadMap(new TreeMap<String, List<PointOfInterest>> ());
+	}
 	
 	final Message myMessage = Mockito.mock(Message.class);
 	final Chat myChat = Mockito.mock(Chat.class);

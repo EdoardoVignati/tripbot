@@ -2,14 +2,28 @@ package it.unimi.di.sweng.tripbot.Geolocalization;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.TreeMap;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import it.unimi.di.sweng.tripbot.Configs;
+import it.unimi.di.sweng.tripbot.PointOfInterest;
+import it.unimi.di.sweng.tripbot.model.SingletonModel;
 
-public class GeolocalizationTest {
+public class GeolocalizationTest 
+{
+	@Before
+	public void setUp() 
+	{
+		Locale.setDefault(Locale.US);
+	}
 
 	@Test
-	public void testConfiguration() {
+	public void testConfiguration() 
+	{
 		int port = Configs.INSTANCE.PORT;
 		String googleToken = Configs.INSTANCE.GOOGLE_TOKEN;
 		String telegramServerToken = Configs.INSTANCE.SERVER_TOKEN;
@@ -23,7 +37,8 @@ public class GeolocalizationTest {
 	}
 
 	@Test
-	public void testGmapsPosition() {
+	public void testGmapsPosition() 
+	{			
 		APosition pos = new GmapsPosition(15.012345, -15.012345, "Nice Position, 012345, Nice Town");
 		assertEquals("toString()",
 				"Location Name: Nice Position, 012345, Nice Town;	Latitude: 15.012345;	Longitude: -15.012345",
@@ -31,7 +46,8 @@ public class GeolocalizationTest {
 	}
 
 	@Test
-	public void testGetPositionByName() throws Exception {
+	public void testGetPositionByName() throws Exception 
+	{
 		ILocationService loc = new LocationProvider();
 		APosition pos = loc.getPositionByName("Via Comelico, 14, Milano");
 		assertEquals("getPositionByName()",
@@ -40,13 +56,15 @@ public class GeolocalizationTest {
 	}
 
 	@Test(expected = Exception.class)
-	public void testGetPositionByNameNoResult() throws Exception {
+	public void testGetPositionByNameNoResult() throws Exception 
+	{
 		ILocationService loc = new LocationProvider();
 		APosition pos = loc.getPositionByName("ksfhskefhksjhksjfhksj");
 	}
 
 	@Test
-	public void testGetPositionByCoordinates() throws Exception {
+	public void testGetPositionByCoordinates() throws Exception 
+	{
 		ILocationService loc = new LocationProvider();
 		APosition pos = loc.getPositionByCoordinates(45.455030, 9.212389);
 		assertEquals("getPositionByCoordinates()",
@@ -55,13 +73,15 @@ public class GeolocalizationTest {
 	}
 
 	@Test(expected = Exception.class)
-	public void testGetPositionByCoordinatesNoResult() throws Exception {
+	public void testGetPositionByCoordinatesNoResult() throws Exception 
+	{
 		ILocationService loc = new LocationProvider();
 		APosition pos = loc.getPositionByCoordinates(789, 432);
 	}
 
 	@Test
-	public void testGetPositionConcurrency() throws Exception {
+	public void testGetPositionConcurrency() throws Exception 
+	{
 		ILocationService loc = new LocationProvider();
 		APosition pos = loc.getPositionByName("Via Comelico, 14, Milano");
 		APosition pos3 = loc.getPositionByName("Via Puccini");
@@ -74,7 +94,8 @@ public class GeolocalizationTest {
 	}
 
 	@Test
-	public void testGetMapLink() throws Exception {
+	public void testGetMapLink() throws Exception 
+	{
 		ILocationService loc = new LocationProvider();
 		APosition pos = loc.getPositionByName("Via Comelico, 14, Milano");
 		assertEquals("getMapLink()", "https://www.google.it/maps/place/Via+Comelico,+14,+20135+Milano,+Italy+",
