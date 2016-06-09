@@ -63,9 +63,7 @@ public class Model implements IModel{
 		List<PointOfInterest> pointList = new ArrayList<PointOfInterest>();
 		String name;
 		APosition position;
-		Date meetDate;
-		LocationProvider lp;
-		
+		Date meetDate;		
 		ResultSet rs;
 		try {
 			rs = db.execQuery("SELECT meet_date, poi, address FROM trips WHERE chat_id='" + groupId+"' ORDER BY meet_date;");
