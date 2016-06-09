@@ -67,4 +67,17 @@ public class ModelTest {
 		assertEquals(p1.meetDate, p2.meetDate);
 		db.execQuery("DELETE FROM trips WHERE chat_id='123' AND poi='Duomo';");
 	}
+	
+	@Test
+	public void removePOITest() throws Exception {	
+		String name = "Duomo", groupId = "123";
+		Date meetDate = dateFormat.parse("2016-06-03 10:00:00");
+		APosition position = (new LocationProvider().getPositionByName("Piazza Duomo Milano"));		
+		PointOfInterest p1 = new PointOfInterest(name, meetDate, position, groupId);
+		Model model = new Model();
+		model.insertNewPointOfInterest(p1);
+		model.removePointOfInterest("123", "Duomo");
+		
+		assertNull(model.getPointOfInterest("123", "Duomo"));
+	}
 }

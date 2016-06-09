@@ -65,8 +65,11 @@ public class Model implements IModel{
 
 	@Override
 	public void removePointOfInterest(String groupId, String name) {
-		// TODO Auto-generated method stub
-		
+		try {
+			db.execQuery("DELETE FROM trips WHERE chat_id='"+groupId+"' AND poi='"+name+"';");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
 	}
 
 }
