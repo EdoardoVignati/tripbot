@@ -5,7 +5,14 @@ import com.pengrad.telegrambot.model.Message;
 public class HelpManager implements IFunctionality {
 
 	@Override
-	public String exec(Message dumpMessage) {
+	public String exec(Message message) {
+		
+		final String pattern = "/help";
+		
+		final String testoMessaggio = message.text().trim();
+	    
+	    if ( ! testoMessaggio.equals(pattern) )
+	    	return "formato input non corretto";
 		
 		StringBuilder output = new StringBuilder();
 		

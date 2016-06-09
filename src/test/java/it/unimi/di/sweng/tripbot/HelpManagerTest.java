@@ -19,12 +19,25 @@ public class HelpManagerTest {
 	@Test
 	public void testHelpManager() throws Exception {
 		
+		Mockito.when(myMessage.text()).thenReturn("/help");
+		
 		final IFunctionality myPRManager = new HelpManager();
 		final String expected = "/set_punto_ritrovo luogo dd/mm/aaaa HH:MM : Imposta un nuovo punto di ritrovo\n" +
 								"/prossimo_ritrovo : Visualizza le informazioni del prossimo punto di ritrovo impostato\n" +
 								"/programma : Visualizza la lista di tutti i punti di ritrovo impostati\n";
 		
 		assertEquals(expected, myPRManager.exec(myMessage));
+		
+	}
+	
+	@Test
+	public void testHelpManagerErrorInput() throws Exception {
+		
+		Mockito.when(myMessage.text()).thenReturn("/comando_inesistente");
+		
+		final IFunctionality myPRManager = new HelpManager();
+		
+		assertEquals("formato input non corretto", myPRManager.exec(myMessage));
 		
 	}
 
