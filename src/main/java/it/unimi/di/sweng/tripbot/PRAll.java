@@ -7,8 +7,6 @@ import java.util.NoSuchElementException;
 
 import com.pengrad.telegrambot.model.Message;
 
-import it.unimi.di.sweng.tripbot.model.SingletonModel;
-
 public class PRAll implements IFunctionality {
 
 	@Override
@@ -25,7 +23,7 @@ public class PRAll implements IFunctionality {
 	    
 	    try {
 			
-			final List<PointOfInterest> myPRList = SingletonModel.INSTANCE.getPointOfInterestList(groupID);
+			final List<PointOfInterest> myPRList = CurrentModel.getCurrentModel().getPointOfInterestList(groupID);
 			
 			final PointOfInterestComparator myComparator = new PointOfInterestDateComparator();
 			

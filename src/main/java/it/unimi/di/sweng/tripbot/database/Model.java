@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import it.unimi.di.sweng.tripbot.Configs;
 import it.unimi.di.sweng.tripbot.IModel;
@@ -15,7 +16,7 @@ import it.unimi.di.sweng.tripbot.Geolocalization.LocationProvider;
 
 public class Model implements IModel{
 	private Database db;
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public Model(){
 		try {
@@ -71,13 +72,16 @@ public class Model implements IModel{
 			while(rs.next()){
 				name = rs.getString("poi");
 				position = (new LocationProvider().getPositionByName(rs.getString("address").split(":|\\;")[1]));
-				meetDate = rs.getDate("meet_date");
+				meetDate = rs.getTimestamp("meet_date");
 				pointList.add(new PointOfInterest(name, meetDate, position, groupId));
 			}
 			rs.close();
 		} catch (Exception e) {
 			System.err.println("Errore query database");
 		} 		
+		if(pointList.size() == 0)
+			throw new NoSuchElementException();
+			
 		return pointList;
 	}
 
