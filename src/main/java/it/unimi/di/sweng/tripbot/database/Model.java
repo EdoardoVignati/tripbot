@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import it.unimi.di.sweng.tripbot.Configs;
 import it.unimi.di.sweng.tripbot.IModel;
 import it.unimi.di.sweng.tripbot.PointOfInterest;
 import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
@@ -18,7 +19,7 @@ public class Model implements IModel{
 	
 	public Model(){
 		try {
-			db = new Database(System.getenv("JDBC_DATABASE_URL"));
+			db = new Database(Configs.INSTANCE.DB);
 		} catch (SQLException e) {
 			System.err.println("Errore connessione database");
 		}

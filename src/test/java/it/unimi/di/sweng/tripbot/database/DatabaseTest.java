@@ -1,29 +1,25 @@
 package it.unimi.di.sweng.tripbot.database;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
-public class DatabaseTest {
-	private static String url;
+import it.unimi.di.sweng.tripbot.Configs;
 
-	@BeforeClass
-	public static void init() {
-		url = System.getenv("JDBC_DATABASE_URL");
-	}
+public class DatabaseTest {
 
 	@Rule
 	public Timeout globalTimeout = Timeout.seconds(10);
 
 	@Test
 	public void getConnectionOk() throws SQLException {
-		Database db = new Database(url);
+		Database db = new Database(Configs.INSTANCE.DB);
 		assertTrue(db.conn.isValid(10));
 	}
 
@@ -34,7 +30,7 @@ public class DatabaseTest {
 
 	@Test
 	public void execQuery() throws SQLException {
-		Database db = new Database(url);
+		Database db = new Database(Configs.INSTANCE.DB);
 		db.execQuery("CREATE TABLE test (poi varchar(20));");
 		db.execQuery("INSERT INTO test (poi) VALUES ('Duomo di Milano');");
 

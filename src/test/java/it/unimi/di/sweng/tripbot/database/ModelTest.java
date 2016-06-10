@@ -33,7 +33,7 @@ public class ModelTest {
 	@BeforeClass
 	public static void globalSetUp() throws ParseException, SQLException {
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		db = new Database(System.getenv("JDBC_DATABASE_URL"));
+		db = new Database(Configs.INSTANCE.DB);
 	}
 	
 	@Test
