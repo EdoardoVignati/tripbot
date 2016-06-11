@@ -26,7 +26,7 @@ public class PRNext implements IFunctionality {
 
 			final List<PointOfInterest> myPRList = CurrentModel.getCurrentModel().getPointOfInterestList(groupID);
 
-			final PointOfInterestComparator myComparator = new PointOfInterestDateComparator();
+			final PointOfInterestDateComparator myComparator = new PointOfInterestDateComparator();
 
 			Collections.sort(myPRList, myComparator);
 

@@ -1,6 +1,8 @@
 package it.unimi.di.sweng.tripbot;
 
-public class PointOfInterestDateComparator implements PointOfInterestComparator {
+import java.util.Comparator;
+
+public class PointOfInterestDateComparator implements Comparator<PointOfInterest> {
 
 	@Override
 	public int compare(final PointOfInterest obj1, final PointOfInterest obj2) {

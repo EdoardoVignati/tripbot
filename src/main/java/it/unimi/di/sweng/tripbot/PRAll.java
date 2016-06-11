@@ -25,9 +25,7 @@ public class PRAll implements IFunctionality {
 			
 			final List<PointOfInterest> myPRList = CurrentModel.getCurrentModel().getPointOfInterestList(groupID);
 			
-			final PointOfInterestComparator myComparator = new PointOfInterestDateComparator();
-			
-			Collections.sort(myPRList, myComparator);
+			Collections.sort(myPRList, new PointOfInterestDateComparator());
 			
 			final SimpleDateFormat formatterData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			

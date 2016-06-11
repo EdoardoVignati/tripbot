@@ -18,7 +18,6 @@ import org.junit.rules.Timeout;
 
 import it.unimi.di.sweng.tripbot.Configs;
 import it.unimi.di.sweng.tripbot.PointOfInterest;
-import it.unimi.di.sweng.tripbot.PointOfInterestComparator;
 import it.unimi.di.sweng.tripbot.PointOfInterestDateComparator;
 import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
 import it.unimi.di.sweng.tripbot.Geolocalization.LocationProvider;
@@ -106,7 +105,7 @@ public class ModelTest {
 		model.insertNewPointOfInterest(p1);
 		
 		pointList = model.getPointOfInterestList("123");
-		final PointOfInterestComparator myComparator = new PointOfInterestDateComparator();
+		final PointOfInterestDateComparator myComparator = new PointOfInterestDateComparator();
 		Collections.sort(pointList, myComparator);
 		
 		assertEquals(pointList.get(0).name, "Duomo");

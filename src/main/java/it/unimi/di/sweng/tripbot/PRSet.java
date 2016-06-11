@@ -10,7 +10,6 @@ import com.pengrad.telegrambot.model.Message;
 import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
 import it.unimi.di.sweng.tripbot.Geolocalization.ILocationService;
 import it.unimi.di.sweng.tripbot.Geolocalization.LocationProvider;
-import it.unimi.di.sweng.tripbot.model.SingletonModel;
 
 public class PRSet implements IFunctionality {
 
