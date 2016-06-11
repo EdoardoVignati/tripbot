@@ -38,31 +38,28 @@ public class BotResource extends ServerResource {
 		final Message message;
 		try {
 			message = update.message();
-		}
-		catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			getLogger().warning("Inserire un comando");
 			setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
 					"Inserisci un comando valido controlla /help per i comandi disponibili");
 			return null;
 		}
-		
-		final Chat chat = message.chat();
-		final Integer entitylenght;
 
-		if (message.entities() == null) {
-			getLogger().warning("Inserire un comando");
-			setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
-					"Inserisci un comando valido controlla /help per i comandi disponibili");
-			return null;
-		} else
-			entitylenght = message.entities()[0].length();
+		if (message != null) {
+			final Chat chat = message.chat();
 
-		CommandParser cp = new CommandParser(message.text().substring(1, entitylenght));
-		final String answer = cp.dispatcher().exec(message);
+			if (message.entities() == null)
+				return null;
 
-		final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);
-		final SendResponse response = bot.execute(new SendMessage(chat.id(), answer));
-		getLogger().info("=> " + response);
+			final Integer entitylenght = message.entities()[0].length();
+			CommandParser cp = new CommandParser(message.text().substring(1, entitylenght));
+
+			final String answer = cp.dispatcher().exec(message);
+			final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);
+			final SendResponse response = bot.execute(new SendMessage(chat.id(), answer));
+			getLogger().info("=> " + response);
+
+		}
 
 		return null;
 	}

@@ -21,7 +21,7 @@ public class PRSetTest {
 	@After
 	public void flushModel() {
 
-		String groupID = "-3";
+		String groupID = "-1";
 		try {
 			for (PointOfInterest p : CurrentModel.getCurrentModel().getPointOfInterestList(groupID))
 				CurrentModel.getCurrentModel().removePointOfInterest(groupID, p.name);
