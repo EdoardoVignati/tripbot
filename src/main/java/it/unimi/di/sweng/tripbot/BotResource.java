@@ -35,7 +35,17 @@ public class BotResource extends ServerResource {
 		}
 		getLogger().info("<= " + update);
 
-		final Message message = update.message();
+		final Message message;
+		try {
+			message = update.message();
+		}
+		catch(NullPointerException e){
+			getLogger().warning("Inserire un comando");
+			setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
+					"Inserisci un comando valido controlla /help per i comandi disponibili");
+			return null;
+		}
+		
 		final Chat chat = message.chat();
 		final Integer entitylenght;
 

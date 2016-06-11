@@ -7,7 +7,7 @@ public class PointOfInterest {
 	public final String name;
 	public final Date meetDate;
 	public final String groupId;
-	protected final APosition position;
+	public final APosition position;
 	
 	public PointOfInterest(final String name, final Date meetDate, final APosition position, final String groupId) {
 		this.name = name;

@@ -48,7 +48,7 @@ public class PRSet implements IFunctionality {
 			
 			final PointOfInterest newPR = new PointOfInterest(luogo, dataPR, gmapsPosition, groupID);
 			
-			final IModel myModel = SingletonModel.INSTANCE;
+			final IModel myModel = CurrentModel.getCurrentModel();
 			myModel.insertNewPointOfInterest(newPR);
 			
 			return "punto di ritrovo '" + luogo + " " + formatterData.format(dataPR) + "' impostato";
