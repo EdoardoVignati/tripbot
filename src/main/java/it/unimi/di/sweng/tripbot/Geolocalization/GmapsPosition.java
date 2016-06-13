@@ -2,7 +2,7 @@ package it.unimi.di.sweng.tripbot.Geolocalization;
 
 public class GmapsPosition extends APosition 
 {
-	public GmapsPosition(double lat, double lon, String name) 
+	protected GmapsPosition(double lat, double lon, String name) 
 	{		
 		super(lat, lon, name,generateLink(name));		
 	}

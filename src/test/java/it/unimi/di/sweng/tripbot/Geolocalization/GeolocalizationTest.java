@@ -18,6 +18,7 @@ public class GeolocalizationTest
 		Locale.setDefault(Locale.US);
 	}
 
+	@SuppressWarnings("unused")
 	@Test
 	public void testConfiguration() 
 	{		
@@ -49,6 +50,7 @@ public class GeolocalizationTest
 		assertEquals("getPositionByName()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389	Url: https://www.google.it/maps/place/Via+Comelico,+14,+20135+Milano,+Italy+", pos.toString());
 	}
 	
+	@SuppressWarnings("unused")
 	@Test(expected = Exception.class)
 	public void testGetPositionByNameNoResult() throws Exception
 	{
@@ -64,6 +66,7 @@ public class GeolocalizationTest
 		assertEquals("getPositionByCoordinates()", "Location Name: Via Comelico, 14, 20135 Milano, Italy;	Latitude: 45.455030;	Longitude: 9.212389	Url: https://www.google.it/maps/place/Via+Comelico,+14,+20135+Milano,+Italy+", pos.toString());
 	}
 	
+	@SuppressWarnings("unused")
 	@Test(expected = Exception.class)
 	public void testGetPositionByCoordinatesNoResult() throws Exception
 	{
@@ -71,6 +74,7 @@ public class GeolocalizationTest
 		APosition pos = loc.getPositionByCoordinates(789,432);		
 	}
 	
+	@SuppressWarnings("unused")
 	@Test
 	public void testGetPositionConcurrency() throws Exception
 	{
