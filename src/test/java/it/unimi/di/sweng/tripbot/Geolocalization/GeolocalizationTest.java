@@ -2,11 +2,21 @@ package it.unimi.di.sweng.tripbot.Geolocalization;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Locale;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import it.unimi.di.sweng.tripbot.Configs;
 
-public class GeolocalizationTest {
+public class GeolocalizationTest 
+{
+	
+	@Before
+	public void setUp() 
+	{
+		Locale.setDefault(Locale.US);
+	}
 
 	@Test
 	public void testConfiguration() 
