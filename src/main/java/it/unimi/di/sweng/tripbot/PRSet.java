@@ -29,7 +29,7 @@ public class PRSet implements IFunctionality {
 	    final Matcher myRegExpMatcher = myPattern.matcher(testoMessaggio);
 	    
 	    if ( !myRegExpMatcher.find() )
-	    	return "formato input non corretto";
+	    	return "Formato input non corretto";
 		
 		final String luogo = myRegExpMatcher.group(INDICE_GRUPPO_LUOGO);
 		final String data = myRegExpMatcher.group(INDICE_GRUPPO_DATA);
@@ -49,12 +49,13 @@ public class PRSet implements IFunctionality {
 			
 			final IModel myModel = CurrentModel.getCurrentModel();
 			myModel.insertNewPointOfInterest(newPR);
+			final APosition myPos = myModel.getPointOfInterest(groupID, luogo).position;
 			
-			return "punto di ritrovo '" + luogo + " " + formatterData.format(dataPR) + "' impostato";
+			return "Impostato " + luogo + "\n" + myPos.toString().split(":|\\;")[1].trim() + "\n" + "" + formatterData.format(dataPR);
 			
 		} catch (Exception e) {
 			
-			return "luogo non trovato su google maps";
+			return "Luogo non trovato su Google maps";
 			
 		}
 		

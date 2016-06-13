@@ -43,7 +43,7 @@ public class PRNextTest {
 
 		final IFunctionality myPR = new PRNext();
 		final String outputString = myPR.exec(myMessage);
-		assertEquals("non e' stato impostato alcun punto di ritrovo", outputString);
+		assertEquals("Non e' stato impostato alcun punto di ritrovo", outputString);
 
 	}
 
@@ -57,11 +57,11 @@ public class PRNextTest {
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);
-		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/08/2016 15:43' impostato", outputString);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43", outputString);
 
 		final IFunctionality myPRNext = new PRNext();
 		final String outputString2 = myPRNext.exec(myMessage);
-		assertEquals("il prossimo punto di ritrovo e': Via terrazzano, 14 Rho 07/08/2016 15:43", outputString2);
+		assertEquals("Prossimo ritrovo:\nVia terrazzano, 14 Rho\n07/08/2016 15:43", outputString2);
 
 	}
 
@@ -75,11 +75,11 @@ public class PRNextTest {
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);
-		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/08/2011 15:43' impostato", outputString);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2011 15:43", outputString);
 
 		final IFunctionality myPRNext = new PRNext();
 		final String outputString2 = myPRNext.exec(myMessage);
-		assertEquals("non sono previsti altri punti di ritrovo", outputString2);
+		assertEquals("Non sono previsti altri punti di ritrovo", outputString2);
 
 	}
 
@@ -90,7 +90,7 @@ public class PRNextTest {
 
 		final IFunctionality myPRNext = new PRNext();
 		final String outputString2 = myPRNext.exec(myMessage);
-		assertEquals("formato input non corretto", outputString2);
+		assertEquals("Formato input non corretto", outputString2);
 
 	}
 
@@ -105,17 +105,17 @@ public class PRNextTest {
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);
-		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/08/2016 15:43' impostato", outputString);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43", outputString);
 
 		final String outputString2 = myPRSet.exec(myMessage);
-		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 06/08/2016 15:43' impostato", outputString2);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n06/08/2016 15:43", outputString2);
 
 		final String outputString3 = myPRSet.exec(myMessage);
-		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 09/08/2016 15:43' impostato", outputString3);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n09/08/2016 15:43", outputString3);
 
 		final IFunctionality myPRNext = new PRNext();
 		final String outputString4 = myPRNext.exec(myMessage);
-		assertEquals("il prossimo punto di ritrovo e': Via terrazzano, 14 Rho 06/08/2016 15:43", outputString4);
+		assertEquals("Prossimo ritrovo:\nVia terrazzano, 14 Rho\n06/08/2016 15:43", outputString4);
 
 	}
 

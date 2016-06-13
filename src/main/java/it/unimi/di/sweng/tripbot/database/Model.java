@@ -14,18 +14,18 @@ import it.unimi.di.sweng.tripbot.PointOfInterest;
 import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
 import it.unimi.di.sweng.tripbot.Geolocalization.LocationProvider;
 
-public class Model implements IModel{
+public class Model implements IModel {
 	private Database db;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	
-	public Model(){
+
+	public Model() {
 		try {
 			db = new Database(Configs.INSTANCE.DB);
 		} catch (SQLException e) {
 			System.err.println("Errore connessione database");
 		}
 	}
-	
+
 	@Override
 	public void insertNewPointOfInterest(PointOfInterest pointOfInterest) {
 		String chat_id, poi, address;
@@ -35,10 +35,11 @@ public class Model implements IModel{
 		Date meet_date = pointOfInterest.meetDate;
 		String dateString = dateFormat.format(meet_date);
 		try {
-			db.execQuery("INSERT INTO trips(chat_id, poi, address, meet_date) VALUES('"+chat_id+"','"+poi+"','"+address+"','"+dateString+"');");
+			db.execQuery("INSERT INTO trips(chat_id, poi, address, meet_date) VALUES('" + chat_id + "','" + poi + "','"
+					+ address + "','" + dateString + "');");
 		} catch (SQLException e) {
 			System.err.println("Errore query database");
-		}		
+		}
 	}
 
 	@Override
@@ -47,8 +48,9 @@ public class Model implements IModel{
 		APosition position;
 		ResultSet rs;
 		try {
-			rs = db.execQuery("SELECT address, meet_date FROM trips WHERE chat_id='"+groupId+"' AND poi='"+name+"';");
-			if(rs.next()){
+			rs = db.execQuery(
+					"SELECT address, meet_date FROM trips WHERE chat_id='" + groupId + "' AND poi='" + name + "';");
+			if (rs.next()) {
 				meetDate = rs.getTimestamp("meet_date");
 				position = (new LocationProvider().getPositionByName(rs.getString("address").split(":|\\;")[1]));
 				rs.close();
@@ -56,20 +58,20 @@ public class Model implements IModel{
 			}
 		} catch (Exception e) {
 			System.err.println("Errore query database");
-		} 
+		}
 		return null;
 	}
 
 	@Override
-	public List<PointOfInterest> getPointOfInterestList(final String groupId){
+	public List<PointOfInterest> getPointOfInterestList(final String groupId) {
 		List<PointOfInterest> pointList = new ArrayList<PointOfInterest>();
 		String name;
 		APosition position;
-		Date meetDate;		
+		Date meetDate;
 		ResultSet rs;
 		try {
-			rs = db.execQuery("SELECT meet_date, poi, address FROM trips WHERE chat_id='" + groupId+"';");
-			while(rs.next()){
+			rs = db.execQuery("SELECT meet_date, poi, address FROM trips WHERE chat_id='" + groupId + "';");
+			while (rs.next()) {
 				name = rs.getString("poi");
 				position = (new LocationProvider().getPositionByName(rs.getString("address").split(":|\\;")[1]));
 				meetDate = rs.getTimestamp("meet_date");
@@ -78,20 +80,20 @@ public class Model implements IModel{
 			rs.close();
 		} catch (Exception e) {
 			System.err.println("Errore query database");
-		} 		
-		if(pointList.size() == 0)
+		}
+		if (pointList.size() == 0)
 			throw new NoSuchElementException();
-			
+
 		return pointList;
 	}
 
 	@Override
 	public void removePointOfInterest(String groupId, String name) {
 		try {
-			db.execQuery("DELETE FROM trips WHERE chat_id='"+groupId+"' AND poi='"+name+"';");
+			db.execQuery("DELETE FROM trips WHERE chat_id='" + groupId + "' AND poi='" + name + "';");
 		} catch (SQLException e) {
 			System.err.println("Errore query database");
-		}		
+		}
 	}
 
 }

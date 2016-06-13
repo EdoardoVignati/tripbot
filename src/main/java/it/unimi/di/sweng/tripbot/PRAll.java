@@ -17,7 +17,7 @@ public class PRAll implements IFunctionality {
 		final String testoMessaggio = message.text().trim();
 	    
 	    if ( ! testoMessaggio.equals(pattern) )
-	    	return "formato input non corretto";
+	    	return "Formato input non corretto";
 	    
 	    final String groupID = message.chat().id().toString();
 	    
@@ -39,7 +39,7 @@ public class PRAll implements IFunctionality {
 			
 		} catch (NoSuchElementException e) {
 			
-			return "non e' stato impostato alcun punto di ritrovo";
+			return "Non e' stato impostato alcun punto di ritrovo";
 			
 		}
 	    

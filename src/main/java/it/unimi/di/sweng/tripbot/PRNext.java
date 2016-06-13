@@ -18,7 +18,7 @@ public class PRNext implements IFunctionality {
 		final String testoMessaggio = message.text().trim();
 
 		if (!testoMessaggio.equals(pattern))
-			return "formato input non corretto";
+			return "Formato input non corretto";
 
 		final String groupID = message.chat().id().toString();
 
@@ -36,15 +36,15 @@ public class PRNext implements IFunctionality {
 
 			for (PointOfInterest tmp : myPRList)
 				if (myComparator.compare(tmp, currentPRDate) >= 0)
-					return "il prossimo punto di ritrovo e': " + tmp.name + " " + formatterData.format(tmp.meetDate);
+					return "Prossimo ritrovo:\n" + tmp.name + "\n" + formatterData.format(tmp.meetDate);
 
 		} catch (NoSuchElementException e) {
 
-			return "non e' stato impostato alcun punto di ritrovo";
+			return "Non e' stato impostato alcun punto di ritrovo";
 
 		}
 
-		return "non sono previsti altri punti di ritrovo";
+		return "Non sono previsti altri punti di ritrovo";
 
 	}
 

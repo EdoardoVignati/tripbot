@@ -43,7 +43,7 @@ public class PRSetTest {
 
 		final IFunctionality myPR = new PRSet();
 		final String outputString = myPR.exec(myMessage);
-		assertEquals("punto di ritrovo 'Via terrazzano, 14 Rho 07/08/2016 15:43' impostato", outputString);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43", outputString);
 
 	}
 
@@ -56,23 +56,23 @@ public class PRSetTest {
 
 		final IFunctionality myPR = new PRSet();
 		final String outputString = myPR.exec(myMessage);
-		assertEquals("formato input non corretto", outputString);
+		assertEquals("Formato input non corretto", outputString);
 
 		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Rho 15:43");
 		final String outputString2 = myPR.exec(myMessage);
-		assertEquals("formato input non corretto", outputString2);
+		assertEquals("Formato input non corretto", outputString2);
 
 		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Rho 07/08/2016");
 		final String outputString3 = myPR.exec(myMessage);
-		assertEquals("formato input non corretto", outputString3);
+		assertEquals("Formato input non corretto", outputString3);
 
 		Mockito.when(myMessage.text()).thenReturn("/altro_comando Rho 07/08/2016 15:30");
 		final String outputString4 = myPR.exec(myMessage);
-		assertEquals("formato input non corretto", outputString4);
+		assertEquals("Formato input non corretto", outputString4);
 
 		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via pincopallo Ahrhrha, 2 15/08/2016 15:30");
 		final String outputString5 = myPR.exec(myMessage);
-		assertEquals("luogo non trovato su google maps", outputString5);
+		assertEquals("Luogo non trovato su Google maps", outputString5);
 
 	}
 
