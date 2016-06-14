@@ -22,11 +22,11 @@ public class PRSet implements IFunctionality {
 	@Override
 	public String exec(Message message) {
 		
-		final String pattern = "(\\/set_punto_ritrovo) (.+) (\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d) (\\d\\d:\\d\\d)";
+		final String pattern = "(\\/set_punto_ritrovo)(@[^\\s]+){0,1} (.+) (\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d) (\\d\\d:\\d\\d)";
 		
-		final int INDICE_GRUPPO_LUOGO = 2;
-		final int INDICE_GRUPPO_DATA = 3;
-		final int INDICE_GRUPPO_ORA = 4;
+		final int INDICE_GRUPPO_LUOGO = 3;
+		final int INDICE_GRUPPO_DATA = 4;
+		final int INDICE_GRUPPO_ORA = 5;
 
 		final String testoMessaggio = message.text();
 		
