@@ -1,6 +1,6 @@
 package it.unimi.di.sweng.tripbot;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.NoSuchElementException;
 
@@ -21,7 +21,7 @@ public class PRSetTest {
 	@After
 	public void flushModel() {
 
-		String groupID = "-1";
+		String groupID = "-3";
 		try {
 			for (PointOfInterest p : CurrentModel.getCurrentModel().getPointOfInterestList(groupID))
 				CurrentModel.getCurrentModel().removePointOfInterest(groupID, p.name);
@@ -39,7 +39,8 @@ public class PRSetTest {
 
 		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
-		Mockito.when(myChat.id()).thenReturn((long) -1);
+		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPR = new PRSet();
 		final String outputString = myPR.exec(myMessage);
@@ -52,7 +53,8 @@ public class PRSetTest {
 
 		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo 07/08/2016 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
-		Mockito.when(myChat.id()).thenReturn((long) -1);
+		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPR = new PRSet();
 		final String outputString = myPR.exec(myMessage);
