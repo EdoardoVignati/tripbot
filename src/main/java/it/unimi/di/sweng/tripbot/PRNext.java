@@ -36,7 +36,7 @@ public class PRNext implements IFunctionality {
 
 			for (PointOfInterest tmp : myPRList)
 				if (myComparator.compare(tmp, currentPRDate) >= 0)
-					return "Prossimo ritrovo:\n" + tmp.name + "\n" + formatterData.format(tmp.meetDate);
+					return "Prossimo ritrovo:\n<a href='" + tmp.position.mapUrl + "'>" + tmp.name + "\n" + formatterData.format(tmp.meetDate) + "</a>";
 
 		} catch (NoSuchElementException e) {
 
