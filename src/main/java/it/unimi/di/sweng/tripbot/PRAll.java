@@ -16,7 +16,7 @@ public class PRAll implements IFunctionality {
 		
 		final String testoMessaggio = message.text().trim();
 	    
-	    if ( ! testoMessaggio.equals(pattern) )
+	    if ( ! testoMessaggio.contains(pattern) )
 	    	return "Formato input non corretto";
 	    
 	    final String groupID = message.chat().id().toString();

@@ -11,8 +11,8 @@ public class HelpManager implements IFunctionality {
 		
 		final String testoMessaggio = message.text().trim();
 	    
-	    if ( ! testoMessaggio.equals(pattern) )
-	    	return "formato input non corretto";
+	    if ( ! testoMessaggio.contains(pattern) )
+	    	return "comando non trovato";
 		
 		StringBuilder output = new StringBuilder();
 		

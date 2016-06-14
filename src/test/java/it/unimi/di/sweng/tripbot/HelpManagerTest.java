@@ -37,7 +37,7 @@ public class HelpManagerTest {
 		
 		final IFunctionality myPRManager = new HelpManager();
 		
-		assertEquals("formato input non corretto", myPRManager.exec(myMessage));
+		assertEquals("comando non trovato", myPRManager.exec(myMessage));
 		
 	}
 

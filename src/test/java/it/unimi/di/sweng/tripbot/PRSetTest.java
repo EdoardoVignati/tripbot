@@ -77,5 +77,33 @@ public class PRSetTest {
 		assertEquals("Luogo non trovato su Google maps", outputString5);
 
 	}
+	
+	@Test
+	public void testPRSetWithAt() throws Exception {
+
+		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo@qualcosa Via terrazzano, 14 Rho 07/08/2016 15:43");
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
+
+		final IFunctionality myPR = new PRSet();
+		final String outputString = myPR.exec(myMessage);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43", outputString);
+
+	}
+	
+	@Test
+	public void testPRSetWithAtError() throws Exception {
+
+		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo@ Via terrazzano, 14 Rho 07/08/2016 15:43");
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
+
+		final IFunctionality myPR = new PRSet();
+		final String outputString = myPR.exec(myMessage);
+		assertEquals("Formato input non corretto", outputString);
+
+	}
 
 }
