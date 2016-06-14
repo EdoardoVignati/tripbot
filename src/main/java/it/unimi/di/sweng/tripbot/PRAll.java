@@ -32,7 +32,7 @@ public class PRAll implements IFunctionality {
 			String output = "Il programma del viaggio e' il seguente:\n";
 			
 			for(PointOfInterest tmp : myPRList)
-				output += "- " + tmp.name + " " + formatterData.format(tmp.meetDate) + "\n";
+				output += "- <a href='" + tmp.position.mapUrl + "'>" + tmp.name + " " + formatterData.format(tmp.meetDate) + "</a>\n";
 			
 			return output;
 			

@@ -59,9 +59,8 @@ public class PRSet implements IFunctionality {
 			
 			final IModel myModel = CurrentModel.getCurrentModel();
 			myModel.insertNewPointOfInterest(newPR);
-			final APosition myPos = myModel.getPointOfInterest(chatID.toString(), luogo).position;
 			
-			return "Impostato " + luogo + "\n" + myPos.toString().split(":|\\;")[1].trim() + "\n" + "" + formatterData.format(dataPR);
+			return "Impostato " + luogo + "\n" + gmapsPosition.toString().split(":|\\;")[1].trim() + "\n" + "" + formatterData.format(dataPR);
 			
 		} catch (Exception e) {
 			
