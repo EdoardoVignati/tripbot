@@ -52,7 +52,8 @@ public class BotResource extends ServerResource {
 				return null;
 
 			final Integer entitylenght = message.entities()[0].length();
-			CommandParser cp = new CommandParser(message.text().substring(1, entitylenght));
+			final String comando = message.text().substring(1, entitylenght).split("@")[0];
+			CommandParser cp = new CommandParser(comando);
 
 			final String answer = cp.dispatcher().exec(message);
 			final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);

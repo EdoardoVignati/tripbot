@@ -53,5 +53,14 @@ public class BotResourceTest {
 		assertEquals(((BotResource) br).update(stringRepresentation), null);
 	}
 	
+	@Test
+	public void testCommandValid2() throws IOException {
+		ServerResource br = Mockito.spy(new BotResource());
+		final StringRepresentation stringRepresentation = new StringRepresentation(
+				"{\"update_id\":188379476,\n\"message\":{\"message_id\":70,\"from\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\"},\"chat\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\",\"type\":\"private\"},\"date\":1465246046,\"text\":\"/set_punto_ritrovo@qualcosa\",\"entities\":[{\"type\":\"bot_command\",\"offset\":0,\"length\":26}]}}");
+
+		Mockito.doReturn(Configs.INSTANCE.SERVER_TOKEN).when(br).getAttribute("token");
+		assertEquals(((BotResource) br).update(stringRepresentation), null);
+	}
 	
 }
