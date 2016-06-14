@@ -54,6 +54,7 @@ public class PRNextTest {
 				"/prossimo_ritrovo");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);
@@ -72,6 +73,7 @@ public class PRNextTest {
 				"/prossimo_ritrovo");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);
@@ -102,6 +104,7 @@ public class PRNextTest {
 				"/set_punto_ritrovo Via terrazzano, 14 Rho 09/08/2016 15:43", "/prossimo_ritrovo");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);

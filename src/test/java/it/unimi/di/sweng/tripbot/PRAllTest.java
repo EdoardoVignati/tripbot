@@ -41,6 +41,7 @@ public class PRAllTest {
 				"/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43", "/programma");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPR = new PRAll();
 		final String outputString = myPR.exec(myMessage);
@@ -65,6 +66,7 @@ public class PRAllTest {
 				"/set_punto_ritrovo Via terrazzano, 14 Rho 01/09/2016 15:43", "/programma");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);
