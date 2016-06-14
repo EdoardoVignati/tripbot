@@ -23,8 +23,7 @@ public class PRSetTest {
 
 		String groupID = "-3";
 		try {
-			for (PointOfInterest p : CurrentModel.getCurrentModel().getPointOfInterestList(groupID))
-				CurrentModel.getCurrentModel().removePointOfInterest(groupID, p.name);
+			CurrentModel.getCurrentModel().clear(groupID);
 		} catch (NoSuchElementException e) {
 			System.err.println(e.getMessage());
 
@@ -44,7 +43,8 @@ public class PRSetTest {
 
 		final IFunctionality myPR = new PRSet();
 		final String outputString = myPR.exec(myMessage);
-		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43", outputString);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43",
+				outputString);
 
 	}
 

@@ -23,8 +23,7 @@ public class PRNextTest {
 
 		String groupID = "-3";
 		try {
-			for (PointOfInterest p : CurrentModel.getCurrentModel().getPointOfInterestList(groupID))
-				CurrentModel.getCurrentModel().removePointOfInterest(groupID, p.name);
+			CurrentModel.getCurrentModel().clear(groupID);
 		} catch (NoSuchElementException e) {
 			System.err.println(e.getMessage());
 
@@ -125,7 +124,9 @@ public class PRNextTest {
 
 		final IFunctionality myPRNext = new PRNext();
 		final String outputString4 = myPRNext.exec(myMessage);
-		assertEquals("Prossimo ritrovo:\n<a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho\n06/08/2016 15:43</a>", outputString4);
+		assertEquals(
+				"Prossimo ritrovo:\n<a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho\n06/08/2016 15:43</a>",
+				outputString4);
 
 	}
 

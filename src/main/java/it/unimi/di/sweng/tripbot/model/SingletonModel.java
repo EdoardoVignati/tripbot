@@ -12,13 +12,12 @@ import it.unimi.di.sweng.tripbot.PointOfInterest;
 public enum SingletonModel implements IModel {
 	INSTANCE;
 
-	private final static Map<String, List<PointOfInterest>> POINTS_OF_INTEREST =
-			new TreeMap<String, List<PointOfInterest>>();
-	
+	private final static Map<String, List<PointOfInterest>> POINTS_OF_INTEREST = new TreeMap<String, List<PointOfInterest>>();
+
 	@Override
 	public synchronized void insertNewPointOfInterest(PointOfInterest pointOfInterest) {
 		List<PointOfInterest> list;
-		if ((list = POINTS_OF_INTEREST.get(pointOfInterest.groupId)) == null) 
+		if ((list = POINTS_OF_INTEREST.get(pointOfInterest.groupId)) == null)
 			list = new ArrayList<PointOfInterest>();
 		list.add(pointOfInterest);
 		POINTS_OF_INTEREST.put(pointOfInterest.groupId, list);
@@ -45,21 +44,25 @@ public enum SingletonModel implements IModel {
 	}
 
 	@Override
-	public synchronized void removePointOfInterest(String groupId, String name) {
-		List<PointOfInterest> list = POINTS_OF_INTEREST.get(groupId);
+	public synchronized void removePointOfInterest(PointOfInterest toRemove) {
+		List<PointOfInterest> list = POINTS_OF_INTEREST.get(toRemove.groupId);
 		if (list != null) {
-			for (int i = 0; i < list.size(); i++) 
-				if (list.get(i).name.equals(name))
+			for (int i = 0; i < list.size(); i++)
+				if (list.get(i).name.equals(toRemove.name))
 					list.remove(i);
 		} else
-			throw new NoSuchElementException("Unexistent group with id " + groupId);
+			throw new NoSuchElementException("Unexistent group with id " + toRemove.groupId);
 	}
-	
+
 	public synchronized void loadMap(final Map<String, List<PointOfInterest>> newMap) {
 		POINTS_OF_INTEREST.clear();
 		POINTS_OF_INTEREST.putAll(newMap);
 	}
-	
+
+	public void clear(String groupID) {
+		POINTS_OF_INTEREST.remove(groupID);
+	}
+
 	public synchronized int getNumberOfGroups() {
 		return POINTS_OF_INTEREST.size();
 	}

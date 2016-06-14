@@ -45,7 +45,7 @@ public class PRSet implements IFunctionality {
 		final Long chatID = myChat.id();
 		
 		if ( myChat.type() != Chat.Type.Private && !isAmministratore(chatID, message.from().id()) )
-			return "solo gli amministratori possono impostare nuovi punti di ritrovo";
+			return "Solo gli amministratori possono impostare nuovi punti di ritrovo";
 		
 		try {
 			

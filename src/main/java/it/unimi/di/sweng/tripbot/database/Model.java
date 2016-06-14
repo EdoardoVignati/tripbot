@@ -15,7 +15,7 @@ import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
 import it.unimi.di.sweng.tripbot.Geolocalization.LocationProvider;
 
 public class Model implements IModel {
-	private Database db;
+	public Database db;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public Model() {
@@ -27,7 +27,7 @@ public class Model implements IModel {
 	}
 
 	@Override
-	public void insertNewPointOfInterest(PointOfInterest pointOfInterest) {
+	public synchronized void insertNewPointOfInterest(PointOfInterest pointOfInterest) {
 		String chat_id, poi, address;
 		chat_id = pointOfInterest.groupId;
 		poi = pointOfInterest.name;
@@ -43,27 +43,29 @@ public class Model implements IModel {
 	}
 
 	@Override
-	public PointOfInterest getPointOfInterest(String groupId, String name) {
+	public synchronized PointOfInterest getPointOfInterest(String groupId, String name) {
 		Date meetDate;
 		APosition position;
 		ResultSet rs;
 		try {
 			rs = db.execQuery(
-					"SELECT address, meet_date FROM trips WHERE chat_id='" + groupId + "' AND poi='" + name + "';");
+					"SELECT address, meet_date FROM trips WHERE chat_id=" + groupId + " AND poi='" + name + "';");
 			if (rs.next()) {
 				meetDate = rs.getTimestamp("meet_date");
 				position = (new LocationProvider().getPositionByName(rs.getString("address").split(":|\\;")[1]));
 				rs.close();
 				return new PointOfInterest(name, meetDate, position, groupId);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.err.println("Errore query database");
+		} catch (Exception f) {
+			System.err.println("Position error");
 		}
 		return null;
 	}
 
 	@Override
-	public List<PointOfInterest> getPointOfInterestList(final String groupId) {
+	public synchronized List<PointOfInterest> getPointOfInterestList(final String groupId) {
 		List<PointOfInterest> pointList = new ArrayList<PointOfInterest>();
 		String name;
 		APosition position;
@@ -87,10 +89,19 @@ public class Model implements IModel {
 		return pointList;
 	}
 
-	@Override
-	public void removePointOfInterest(String groupId, String name) {
+	public void clear(String groupID) {
 		try {
-			db.execQuery("DELETE FROM trips WHERE chat_id='" + groupId + "' AND poi='" + name + "';");
+			db.execQuery("DELETE FROM trips WHERE chat_id=" + groupID);
+		} catch (SQLException e) {
+			System.err.println("Errore query database");
+		}
+	}
+
+	@Override
+	public synchronized void removePointOfInterest(PointOfInterest toRemove) {
+		try {
+			db.execQuery("DELETE FROM trips WHERE chat_id=" + toRemove.groupId + " AND poi='" + toRemove.name
+					+ "' AND meet_date='" + toRemove.meetDate + "';");
 		} catch (SQLException e) {
 			System.err.println("Errore query database");
 		}
