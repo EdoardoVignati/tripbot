@@ -36,7 +36,7 @@ public class PRNextTest {
 	@Test
 	public void testPRNext() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/prossimo_ritrovo");
+		Mockito.when(myMessage.text()).thenReturn("/prossimoritrovo");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
 
@@ -49,8 +49,8 @@ public class PRNextTest {
 	@Test
 	public void testPRGetNext() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
-				"/prossimo_ritrovo");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/prossimoritrovo");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
@@ -73,8 +73,8 @@ public class PRNextTest {
 	@Test
 	public void testPRNextNotExist() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2011 15:43",
-				"/prossimo_ritrovo");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2011 15:43",
+				"/prossimoritrovo");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
@@ -104,9 +104,9 @@ public class PRNextTest {
 	@Test
 	public void testPRGetNextWhenMore() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
-				"/set_punto_ritrovo Via terrazzano, 14 Rho 06/08/2016 15:43",
-				"/set_punto_ritrovo Via terrazzano, 14 Rho 09/08/2016 15:43", "/prossimo_ritrovo");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/setpuntoritrovo Via terrazzano, 14 Rho 06/08/2016 15:43",
+				"/setpuntoritrovo Via terrazzano, 14 Rho 09/08/2016 15:43", "/prossimoritrovo");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);

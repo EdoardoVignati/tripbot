@@ -36,8 +36,8 @@ public class PRRemoveTest {
 	@Test
 	public void testPRremoveGetProgramIndex() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
-				"/set_punto_ritrovo Rho 09/09/2017 15:43");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/setpuntoritrovo Rho 09/09/2017 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -2);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
@@ -60,7 +60,7 @@ public class PRRemoveTest {
 	@Test
 	public void testPRremoveSinglePoi() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -2);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
@@ -80,8 +80,8 @@ public class PRRemoveTest {
 	@Test
 	public void testPRremoveMultiPoi() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
-				"/set_punto_ritrovo Via terrazzano, 14 Rho 12/08/2016 15:43");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/setpuntoritrovo Via terrazzano, 14 Rho 12/08/2016 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -2);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
@@ -118,7 +118,7 @@ public class PRRemoveTest {
 	@Test
 	public void testPRremoveErrors() throws Exception {
 		
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -2);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);

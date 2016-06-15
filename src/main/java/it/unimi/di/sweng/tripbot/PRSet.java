@@ -17,7 +17,7 @@ public class PRSet implements IFunctionality {
 	@Override
 	public String exec(Message message) {
 		
-		final String pattern = "(\\/set_punto_ritrovo)(@[^\\s]+){0,1} (.+) (\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d) (\\d\\d:\\d\\d)";
+		final String pattern = "(\\/setpuntoritrovo)(@[^\\s]+){0,1} (.+) (\\d\\d\\/\\d\\d\\/\\d\\d\\d\\d) (\\d\\d:\\d\\d)";
 		
 		final int INDICE_GRUPPO_LUOGO = 3;
 		final int INDICE_GRUPPO_DATA = 4;

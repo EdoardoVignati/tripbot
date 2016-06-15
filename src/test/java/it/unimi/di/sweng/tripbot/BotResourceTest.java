@@ -47,7 +47,7 @@ public class BotResourceTest {
 	public void testCommandValid() throws IOException {
 		ServerResource br = Mockito.spy(new BotResource());
 		final StringRepresentation stringRepresentation = new StringRepresentation(
-				"{\"update_id\":188379476,\n\"message\":{\"message_id\":70,\"from\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\"},\"chat\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\",\"type\":\"private\"},\"date\":1465246046,\"text\":\"/set_punto_ritrovo\",\"entities\":[{\"type\":\"bot_command\",\"offset\":0,\"length\":17}]}}");
+				"{\"update_id\":188379476,\n\"message\":{\"message_id\":70,\"from\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\"},\"chat\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\",\"type\":\"private\"},\"date\":1465246046,\"text\":\"/setpuntoritrovo\",\"entities\":[{\"type\":\"bot_command\",\"offset\":0,\"length\":15}]}}");
 
 		Mockito.doReturn(Configs.INSTANCE.SERVER_TOKEN).when(br).getAttribute("token");
 		assertEquals(((BotResource) br).update(stringRepresentation), null);
@@ -57,7 +57,7 @@ public class BotResourceTest {
 	public void testCommandValid2() throws IOException {
 		ServerResource br = Mockito.spy(new BotResource());
 		final StringRepresentation stringRepresentation = new StringRepresentation(
-				"{\"update_id\":188379476,\n\"message\":{\"message_id\":70,\"from\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\"},\"chat\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\",\"type\":\"private\"},\"date\":1465246046,\"text\":\"/set_punto_ritrovo@qualcosa\",\"entities\":[{\"type\":\"bot_command\",\"offset\":0,\"length\":26}]}}");
+				"{\"update_id\":188379476,\n\"message\":{\"message_id\":70,\"from\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\"},\"chat\":{\"id\":123456789,\"first_name\":\"Mario\",\"last_name\":\"Rossi\",\"username\":\"MaRo1234\",\"type\":\"private\"},\"date\":1465246046,\"text\":\"/setpuntoritrovo@qualcosa\",\"entities\":[{\"type\":\"bot_command\",\"offset\":0,\"length\":24}]}}");
 
 		Mockito.doReturn(Configs.INSTANCE.SERVER_TOKEN).when(br).getAttribute("token");
 		assertEquals(((BotResource) br).update(stringRepresentation), null);

@@ -37,7 +37,7 @@ public class PRAllTest {
 	public void testPRAll() throws Exception {
 
 		Mockito.when(myMessage.text()).thenReturn("/programma",
-				"/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43", "/programma");
+				"/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43", "/programma");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
@@ -61,9 +61,9 @@ public class PRAllTest {
 	@Test
 	public void testPRAllOrder() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/10/2016 15:43",
-				"/set_punto_ritrovo Via terrazzano, 14 Rho 02/08/2016 15:43",
-				"/set_punto_ritrovo Via terrazzano, 14 Rho 01/09/2016 15:43", "/programma");
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/10/2016 15:43",
+				"/setpuntoritrovo Via terrazzano, 14 Rho 02/08/2016 15:43",
+				"/setpuntoritrovo Via terrazzano, 14 Rho 01/09/2016 15:43", "/programma");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -3);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);

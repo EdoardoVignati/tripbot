@@ -10,8 +10,8 @@ public class CommandPool {
 	protected CommandPool() {
 		commands = new HashMap<String, IFunctionality>();
 		commands.put("start", new StartManager());
-		commands.put("set_punto_ritrovo", new PRSet());
-		commands.put("prossimo_ritrovo", new PRNext());
+		commands.put("setpuntoritrovo", new PRSet());
+		commands.put("prossimoritrovo", new PRNext());
 		commands.put("programma", new PRAll());
 		commands.put("remove", new PRRemove());
 	}

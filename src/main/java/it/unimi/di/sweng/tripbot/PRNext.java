@@ -13,7 +13,7 @@ public class PRNext implements IFunctionality {
 	@Override
 	public String exec(Message message) {
 
-		final String pattern = "/prossimo_ritrovo";
+		final String pattern = "/prossimoritrovo";
 
 		final String testoMessaggio = message.text().trim();
 

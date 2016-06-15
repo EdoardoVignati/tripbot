@@ -15,14 +15,14 @@ public class CommandParserTest {
 
 	@Test
 	public void testSetPuntoRitrovo() {
-		PARSER = new CommandParser("set_punto_ritrovo");
+		PARSER = new CommandParser("setpuntoritrovo");
 
 		assertEquals(PRSet.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test
 	public void testProssimoRitrovo() {
-		PARSER = new CommandParser("prossimo_ritrovo");
+		PARSER = new CommandParser("prossimoritrovo");
 
 		assertEquals(PRNext.class, PARSER.dispatcher().getClass());
 	}
