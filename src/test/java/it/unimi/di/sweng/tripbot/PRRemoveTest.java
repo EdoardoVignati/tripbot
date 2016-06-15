@@ -92,10 +92,10 @@ public class PRRemoveTest {
 
 		final IFunctionality myPRRemove = new PRRemove();
 
-		Mockito.when(myMessage.text()).thenReturn("/remove 1 2");
+		Mockito.when(myMessage.text()).thenReturn("/remove 1 2 3");
 		final String outputString3 = myPRRemove.exec(myMessage);
 
-		assertEquals("Punto di ritrovo:\n - 1 cancellato\n - 2 cancellato",outputString3);
+		assertEquals("Punto di ritrovo:\n - 1 cancellato\n - 2 cancellato\n - 3 non cancellato",outputString3);
 		
 	}
 	
@@ -135,6 +135,7 @@ public class PRRemoveTest {
 		
 		final String outputString2 = myPRRemove.exec(myMessage);
 		assertEquals("Formato input non corretto",outputString2);
+		
 	}
 
 }
