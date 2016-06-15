@@ -22,11 +22,11 @@ public class HelpManagerTest {
 		Mockito.when(myMessage.text()).thenReturn("/help");
 		
 		final IFunctionality myPRManager = new HelpManager();
-		final String expected = "/set_punto_ritrovo luogo dd/mm/aaaa HH:MM : Imposta un nuovo punto di ritrovo\n" +
-								"/prossimo_ritrovo : Visualizza le informazioni del prossimo punto di ritrovo impostato\n" +
-								"/programma : Visualizza la lista di tutti i punti di ritrovo impostati\n" +
-								"/remove : Visualizza i punto di ritrovo con un indice per selezionare quelli da cancellare\n" +
-								"/remove <num1> <num2> ... : Cancella i punti di ritrovo di indice <num1> <num2> ...\n";
+		final String expected = "/setpuntoritrovo _luogo dd/mm/aaaa HH:MM_ : Imposta un nuovo punto di ritrovo\n" +
+				"/prossimoritrovo : Visualizza le informazioni del prossimo punto di ritrovo impostato\n" +
+				"/programma : Visualizza la lista di tutti i punti di ritrovo impostati\n" +
+				"/remove : Visualizza i punto di ritrovo con un indice per selezionare quelli da cancellare\n" +
+				"/remove _num1 ecc_  : Cancella i punti di ritrovo di indice _num1 ecc_\n";
 		
 		assertEquals(expected, myPRManager.exec(myMessage));
 		
