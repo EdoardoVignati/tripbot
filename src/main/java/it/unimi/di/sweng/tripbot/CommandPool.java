@@ -13,7 +13,7 @@ public class CommandPool {
 		commands.put("set_punto_ritrovo", new PRSet());
 		commands.put("prossimo_ritrovo", new PRNext());
 		commands.put("programma", new PRAll());
-		commands.put("sos", new SOS());
+		commands.put("remove", new PRRemove());
 	}
 	
 	public static synchronized CommandPool getInstance() {

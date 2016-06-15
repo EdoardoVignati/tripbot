@@ -24,9 +24,9 @@ public class PRAllTest {
 		String groupID = "-3";
 		try {
 			CurrentModel.getCurrentModel().clear(groupID);
-		}catch(NoSuchElementException e){
+		} catch (NoSuchElementException e) {
 			System.err.println(e.getMessage());
-			
+
 		}
 	}
 
@@ -48,7 +48,8 @@ public class PRAllTest {
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString2 = myPRSet.exec(myMessage);
-		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43", outputString2);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/08/2016 15:43",
+				outputString2);
 
 		final String outputString3 = myPR.exec(myMessage);
 		final String expectedOutput = "Il programma del viaggio e' il seguente:\n"
@@ -69,11 +70,14 @@ public class PRAllTest {
 
 		final IFunctionality myPRSet = new PRSet();
 		final String outputString = myPRSet.exec(myMessage);
-		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/10/2016 15:43", outputString);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n07/10/2016 15:43",
+				outputString);
 		final String outputString2 = myPRSet.exec(myMessage);
-		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n02/08/2016 15:43", outputString2);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n02/08/2016 15:43",
+				outputString2);
 		final String outputString3 = myPRSet.exec(myMessage);
-		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n01/09/2016 15:43", outputString3);
+		assertEquals("Impostato Via terrazzano, 14 Rho\nVia Terrazzano, 14, 20017 Rho MI, Italy\n01/09/2016 15:43",
+				outputString3);
 
 		final IFunctionality myPR = new PRAll();
 		final String outputString4 = myPR.exec(myMessage);
