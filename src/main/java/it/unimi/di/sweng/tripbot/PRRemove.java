@@ -16,13 +16,15 @@ public class PRRemove implements IFunctionality {
 		final String groupID = message.chat().id().toString();
 
 		int i = 1;
-		try {
 
 			final SimpleDateFormat formatterData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-			final List<PointOfInterest> myPRList = md.getPointOfInterestList(groupID);
+			List<PointOfInterest> myPRList=null;
+			try{
+				myPRList = md.getPointOfInterestList(groupID);
+			}catch(NoSuchElementException e){
+				System.err.println("Database vuoto");
+			}
 			String[] indexEntries = message.text().split(" ");
-
 			if (indexEntries.length == 1) {
 				String output = "Il programma del viaggio e' il seguente:\n";
 				for (PointOfInterest tmp : myPRList) {
@@ -31,17 +33,23 @@ public class PRRemove implements IFunctionality {
 				}
 				return output;
 			} else {
-				for (int j = 2; j < indexEntries.length; j++)
-					md.removePointOfInterest(myPRList.get(Integer.parseInt(indexEntries[j]) - 1));
+				
+				String feedback = "Punto di ritrovo:";
 
-				return "Punto di ritrovo cancellato";
+				for (int j = 1; j < indexEntries.length; j++) {
+					int entry = Integer.parseInt(indexEntries[j]);
+					
+					if ((myPRList!=null)&&(entry <= myPRList.size()))
+						{
+							md.removePointOfInterest(myPRList.get(entry - 1));
+							feedback += "\n - " + entry + " cancellato";
+						}
+					else feedback += "\n - " + entry + " non cancellato";
+				}
+
+				return feedback;
+
 			}
-
-		} catch (NoSuchElementException e) {
-
-			return "Non e' stato trovato alcun punto di ritrovo";
-
-		}
 
 	}
 }

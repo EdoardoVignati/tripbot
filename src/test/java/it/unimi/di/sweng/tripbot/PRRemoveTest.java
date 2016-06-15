@@ -73,7 +73,7 @@ public class PRRemoveTest {
 		Mockito.when(myMessage.text()).thenReturn("/remove 1");
 		final String outputString3 = myPRRemove.exec(myMessage);
 
-		assertEquals("Punto di ritrovo cancellato",outputString3);
+		assertEquals("Punto di ritrovo:\n - 1 cancellato",outputString3);
 		
 	}
 	
@@ -95,7 +95,7 @@ public class PRRemoveTest {
 		Mockito.when(myMessage.text()).thenReturn("/remove 1 2");
 		final String outputString3 = myPRRemove.exec(myMessage);
 
-		assertEquals("Punto di ritrovo cancellato",outputString3);
+		assertEquals("Punto di ritrovo:\n - 1 cancellato\n - 2 cancellato",outputString3);
 		
 	}
 	
@@ -108,10 +108,10 @@ public class PRRemoveTest {
 
 		final IFunctionality myPRRemove = new PRRemove();
 		
-		Mockito.when(myMessage.text()).thenReturn("/remove 1");
+		Mockito.when(myMessage.text()).thenReturn("/remove 2 322 2");
 		final String outputString3 = myPRRemove.exec(myMessage);
 
-		assertEquals("Non e' stato trovato alcun punto di ritrovo",outputString3);
+		assertEquals("Punto di ritrovo:\n - 2 non cancellato\n - 322 non cancellato\n - 2 non cancellato",outputString3);
 		
 	}
 

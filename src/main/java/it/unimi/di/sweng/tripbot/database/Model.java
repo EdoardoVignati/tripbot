@@ -100,10 +100,10 @@ public class Model implements IModel {
 	@Override
 	public synchronized void removePointOfInterest(PointOfInterest toRemove) {
 		try {
-			db.execQuery("DELETE FROM trips WHERE chat_id=" + toRemove.groupId + " AND poi='" + toRemove.name
-					+ "' AND meet_date='" + toRemove.meetDate + "';");
+			db.execQuery("DELETE FROM trips WHERE chat_id='" + toRemove.groupId + "' AND poi='" + toRemove.name
+					+ "' AND meet_date='" + toRemove.meetDate + "'");
 		} catch (SQLException e) {
-			System.err.println("Errore query database");
+			System.err.println("Errore query delete database");
 		}
 	}
 
