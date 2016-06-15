@@ -1,9 +1,10 @@
 package it.unimi.di.sweng.tripbot;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
@@ -34,9 +35,8 @@ public class PRRemove implements IFunctionality {
 			
 			myPRList = md.getPointOfInterestList(groupID);
 			
-		}catch(NoSuchElementException e){
+		} catch(NoSuchElementException e){
 			
-			System.err.println("Database vuoto");
 			return "Non e' stato impostato alcun punto di ritrovo";
 			
 		}
@@ -58,16 +58,18 @@ public class PRRemove implements IFunctionality {
 			
 		}
 		
-		final List<Integer> indexEntries = new ArrayList<Integer>();
+		final Set<Integer> indexSet = new HashSet<Integer>();
 
 		try {
 			
 			for (int j = 1; j < indexSplit.length; j++)
-				indexEntries.add(Integer.parseInt(indexSplit[j]));
+				indexSet.add(Integer.parseInt(indexSplit[j]));
 				
-		} catch (NumberFormatException ex) {
+		} catch (Exception ex) {
 			return "Formato input non corretto";
 		}
+
+		final Integer[] indexEntries = indexSet.toArray(new Integer[indexSet.size()]);
 			
 		String feedback = "Punto di ritrovo:";
 
@@ -76,9 +78,8 @@ public class PRRemove implements IFunctionality {
 			if ( tmpIndex <= myPRList.size() ) {
 				md.removePointOfInterest(myPRList.get(tmpIndex - 1));
 				feedback += "\n - " + tmpIndex + " cancellato";
-			} else {
+			} else
 				feedback += "\n - " + tmpIndex + " non cancellato";
-			}
 
 		}
 

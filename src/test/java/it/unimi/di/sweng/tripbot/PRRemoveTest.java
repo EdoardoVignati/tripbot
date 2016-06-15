@@ -137,5 +137,27 @@ public class PRRemoveTest {
 		assertEquals("Formato input non corretto",outputString2);
 		
 	}
+	
+	@Test
+	public void testPRremoveDuplicates() throws Exception {
+
+		Mockito.when(myMessage.text()).thenReturn("/setpuntoritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/setpuntoritrovo Rho 09/09/2017 15:43");
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long) -2);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
+
+		final IFunctionality myPRSet = new PRSet();
+		myPRSet.exec(myMessage);
+		myPRSet.exec(myMessage);
+		
+		final IFunctionality myPRRemove = new PRRemove();
+
+		Mockito.when(myMessage.text()).thenReturn("/remove 1 1 1 1 1 1 1 2 3");
+		final String outputString3 = myPRRemove.exec(myMessage);
+
+		assertEquals("Punto di ritrovo:\n - 1 cancellato\n - 2 cancellato\n - 3 non cancellato", outputString3);
+
+	}
 
 }
