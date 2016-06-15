@@ -2,16 +2,11 @@ package it.unimi.di.sweng.tripbot;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.pengrad.telegrambot.TelegramBot;
-import com.pengrad.telegrambot.TelegramBotAdapter;
 import com.pengrad.telegrambot.model.Chat;
-import com.pengrad.telegrambot.model.ChatMember;
 import com.pengrad.telegrambot.model.Message;
-import com.pengrad.telegrambot.request.GetChatAdministrators;
 
 import it.unimi.di.sweng.tripbot.Geolocalization.APosition;
 import it.unimi.di.sweng.tripbot.Geolocalization.ILocationService;
@@ -44,7 +39,7 @@ public class PRSet implements IFunctionality {
 		final Chat myChat = message.chat();
 		final Long chatID = myChat.id();
 		
-		if ( myChat.type() != Chat.Type.Private && !isAmministratore(chatID, message.from().id()) )
+		if ( myChat.type() != Chat.Type.Private && !Administrators.isAmministratore(chatID, message.from().id()) )
 			return "Solo gli amministratori possono impostare nuovi punti di ritrovo";
 		
 		try {
@@ -68,15 +63,6 @@ public class PRSet implements IFunctionality {
 			
 		}
 		
-	}
-	
-	private boolean isAmministratore(final long chatID, final int userID) {
-		final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);
-		final List<ChatMember> chatMembers = bot.execute( new GetChatAdministrators(chatID) ).administrators();
-		for(int i=0; i<chatMembers.size(); i++)
-			if (chatMembers.get(i).user().id() == userID)
-				return true;
-		return false;
 	}
 	
 }

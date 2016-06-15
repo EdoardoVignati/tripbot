@@ -4,12 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import com.pengrad.telegrambot.TelegramBot;
-import com.pengrad.telegrambot.TelegramBotAdapter;
 import com.pengrad.telegrambot.model.Chat;
-import com.pengrad.telegrambot.model.ChatMember;
 import com.pengrad.telegrambot.model.Message;
-import com.pengrad.telegrambot.request.GetChatAdministrators;
 
 public class PRRemove implements IFunctionality {
 
@@ -29,7 +25,7 @@ public class PRRemove implements IFunctionality {
 		final Long chatID = myChat.id();
 		final String groupID = chatID.toString();
 		
-		if ( myChat.type() != Chat.Type.Private && !isAmministratore(chatID, message.from().id()) )
+		if ( myChat.type() != Chat.Type.Private && !Administrators.isAmministratore(chatID, message.from().id()) )
 			return "Solo gli amministratori possono eliminare i punti di ritrovo";
 
 		int i = 1;
@@ -74,15 +70,6 @@ public class PRRemove implements IFunctionality {
 
 		}
 
-	}
-	
-	private boolean isAmministratore(final long chatID, final int userID) {
-		final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);
-		final List<ChatMember> chatMembers = bot.execute( new GetChatAdministrators(chatID) ).administrators();
-		for(int i=0; i<chatMembers.size(); i++)
-			if (chatMembers.get(i).user().id() == userID)
-				return true;
-		return false;
 	}
 	
 }
