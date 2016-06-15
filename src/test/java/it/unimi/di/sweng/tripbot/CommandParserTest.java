@@ -12,7 +12,7 @@ public class CommandParserTest {
 	public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max
 
 	private CommandParser PARSER;
-	
+
 	@Test
 	public void testSetPuntoRitrovo() {
 		PARSER = new CommandParser("set_punto_ritrovo");
@@ -35,10 +35,10 @@ public class CommandParserTest {
 	}
 
 	@Test
-	public void testSOS() {
-		PARSER = new CommandParser("sos");
+	public void testRemove() {
+		PARSER = new CommandParser("remove");
 
-		assertEquals(SOS.class, PARSER.dispatcher().getClass());
+		assertEquals(PRRemove.class, PARSER.dispatcher().getClass());
 	}
 
 	@Test

@@ -23,8 +23,7 @@ public class PRNextTest {
 
 		String groupID = "-3";
 		try {
-			for (PointOfInterest p : CurrentModel.getCurrentModel().getPointOfInterestList(groupID))
-				CurrentModel.getCurrentModel().removePointOfInterest(groupID, p.name);
+			CurrentModel.getCurrentModel().clear(groupID);
 		} catch (NoSuchElementException e) {
 			System.err.println(e.getMessage());
 

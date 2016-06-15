@@ -23,6 +23,7 @@ public class LocationProvider implements ILocationService
 		} catch (Exception e) 
 		{
 			System.err.println("No Results Exception - getPositionByName");
+			System.err.println("Searched " + streetName);
 			throw new Exception("No Results");
 		}
 			

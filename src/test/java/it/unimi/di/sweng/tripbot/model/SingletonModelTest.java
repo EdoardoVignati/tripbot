@@ -22,7 +22,7 @@ public class SingletonModelTest {
 	private static DateFormat dateFormat;
 	private static GmapsPosition position;
 	private static Date futureDate;
-	
+
 	@BeforeClass
 	public static void globalSetUp() throws ParseException {
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
@@ -34,14 +34,14 @@ public class SingletonModelTest {
 	public void setUp() {
 		SingletonModel.INSTANCE.loadMap(new TreeMap<String, List<PointOfInterest>>());
 	}
-	
+
 	@Test
 	public void firstInsertionTest() throws ParseException {
 		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
 		assertEquals(1, SingletonModel.INSTANCE.getNumberOfGroups());
 	}
-	
+
 	@Test
 	public void getPointOfInterestListTest() {
 		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
@@ -53,7 +53,7 @@ public class SingletonModelTest {
 		group1List.add(Mockito.mock(PointOfInterest.class));
 		assertEquals(1, SingletonModel.INSTANCE.getPointOfInterestList("1").size());
 	}
-	
+
 	@Test
 	public void multipleInsertionsTest() {
 		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
@@ -66,13 +66,13 @@ public class SingletonModelTest {
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumC);
 		assertEquals(2, SingletonModel.INSTANCE.getNumberOfGroups());
 	}
-	
+
 	@Test(expected = NoSuchElementException.class)
 	public void nullPointOfInterestListTest() {
 		SingletonModel.INSTANCE.getPointOfInterestList("3");
 	}
-	
-	@Test(expected=NoSuchElementException.class)
+
+	@Test(expected = NoSuchElementException.class)
 	public void getPointOfInterestTest() {
 		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
@@ -84,21 +84,22 @@ public class SingletonModelTest {
 		assertNull(unexistent);
 		SingletonModel.INSTANCE.getPointOfInterest("4", "A place");
 	}
-	
+
 	@Test
 	public void removePointOfInterestTest() {
 		PointOfInterest museumA = new PointOfInterest("Museum A", futureDate, position, "1");
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumA);
 		PointOfInterest museumB = new PointOfInterest("Museum B", futureDate, position, "1");
 		SingletonModel.INSTANCE.insertNewPointOfInterest(museumB);
-		SingletonModel.INSTANCE.removePointOfInterest("1", "Museum B");	
+		SingletonModel.INSTANCE.removePointOfInterest(museumB);
 		List<PointOfInterest> pointList = SingletonModel.INSTANCE.getPointOfInterestList("1");
 		assertTrue(pointList.contains(museumA));
 		assertFalse(pointList.contains(museumB));
 	}
-	
-	@Test(expected=NoSuchElementException.class)
+
+	@Test(expected = NoSuchElementException.class)
 	public void removePointOfInterestExceptionTest() {
-		SingletonModel.INSTANCE.removePointOfInterest("3", "Unexistent place");
+		PointOfInterest errorePOI = new PointOfInterest("Unexists", futureDate, position, "3");
+		SingletonModel.INSTANCE.removePointOfInterest(errorePOI);
 	}
 }
