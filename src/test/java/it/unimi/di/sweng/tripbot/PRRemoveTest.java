@@ -111,15 +111,21 @@ public class PRRemoveTest {
 		Mockito.when(myMessage.text()).thenReturn("/remove 2 322 2");
 		final String outputString3 = myPRRemove.exec(myMessage);
 
-		assertEquals("Punto di ritrovo:\n - 2 non cancellato\n - 322 non cancellato\n - 2 non cancellato",outputString3);
+		assertEquals("Non e' stato impostato alcun punto di ritrovo",outputString3);
 		
 	}
 	
 	@Test
 	public void testPRremoveErrors() throws Exception {
+		
+		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -2);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
+
+		final IFunctionality myPRSet = new PRSet();
+		myPRSet.exec(myMessage);
+		
 		Mockito.when(myMessage.text()).thenReturn("/qualcosa", "/remove ciao 5 4");
 		
 		final IFunctionality myPRRemove = new PRRemove();

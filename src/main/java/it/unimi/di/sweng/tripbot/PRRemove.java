@@ -36,6 +36,7 @@ public class PRRemove implements IFunctionality {
 			myPRList = md.getPointOfInterestList(groupID);
 		}catch(NoSuchElementException e){
 			System.err.println("Database vuoto");
+			return "Non e' stato impostato alcun punto di ritrovo";
 		}
 		String[] indexEntries = testoMessaggio.split(" ");
 		if (indexEntries.length == 1) {
@@ -63,7 +64,7 @@ public class PRRemove implements IFunctionality {
 					md.removePointOfInterest(myPRList.get(entry - 1));
 					feedback += "\n - " + entry + " cancellato";
 				}
-				else feedback += "\n - " + entry + " non cancellato";
+
 			}
 
 			return feedback;
