@@ -114,6 +114,21 @@ public class PRRemoveTest {
 		assertEquals("Punto di ritrovo:\n - 2 non cancellato\n - 322 non cancellato\n - 2 non cancellato",outputString3);
 		
 	}
-
+	
+	@Test
+	public void testPRremoveErrors() throws Exception {
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long) -2);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
+		Mockito.when(myMessage.text()).thenReturn("/qualcosa", "/remove ciao 5 4");
+		
+		final IFunctionality myPRRemove = new PRRemove();
+		
+		final String outputString = myPRRemove.exec(myMessage);
+		assertEquals("Formato input non corretto",outputString);
+		
+		final String outputString2 = myPRRemove.exec(myMessage);
+		assertEquals("Formato input non corretto",outputString2);
+	}
 
 }

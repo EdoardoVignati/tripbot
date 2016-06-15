@@ -24,7 +24,9 @@ public class HelpManagerTest {
 		final IFunctionality myPRManager = new HelpManager();
 		final String expected = "/set_punto_ritrovo luogo dd/mm/aaaa HH:MM : Imposta un nuovo punto di ritrovo\n" +
 								"/prossimo_ritrovo : Visualizza le informazioni del prossimo punto di ritrovo impostato\n" +
-								"/programma : Visualizza la lista di tutti i punti di ritrovo impostati\n";
+								"/programma : Visualizza la lista di tutti i punti di ritrovo impostati\n" +
+								"/remove : Visualizza i punto di ritrovo con un indice per selezionare quelli da cancellare\n" +
+								"/remove <num1> <num2> ... : Cancella i punti di ritrovo di indice <num1> <num2> ...\n";
 		
 		assertEquals(expected, myPRManager.exec(myMessage));
 		

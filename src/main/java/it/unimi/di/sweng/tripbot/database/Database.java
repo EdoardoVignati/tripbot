@@ -24,7 +24,6 @@ public class Database {
 		if (query.toUpperCase().contains("SELECT"))
 			rs = st.executeQuery(query);
 		else
-			//if(st.executeUpdate(query)==0) throw new SQLException();
 			st.executeUpdate(query);
 		
 		return rs;
