@@ -53,7 +53,7 @@ public class PRAllTest {
 
 		final String outputString3 = myPR.exec(myMessage);
 		final String expectedOutput = "Il programma del viaggio e' il seguente:\n"
-				+ "- <a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho 07/08/2016 15:43</a>\n";
+				+ "- [Via terrazzano, 14 Rho\n07/08/2016 15:43](https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+)\n";
 		assertEquals(expectedOutput, outputString3);
 
 	}
@@ -79,9 +79,9 @@ public class PRAllTest {
 		final IFunctionality myPR = new PRAll();
 		final String outputString4 = myPR.exec(myMessage);
 		final String expectedOutput = "Il programma del viaggio e' il seguente:\n"
-				+ "- <a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho 02/08/2016 15:43</a>\n"
-				+ "- <a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho 01/09/2016 15:43</a>\n"
-				+ "- <a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho 07/10/2016 15:43</a>\n";
+				+ "- [Via terrazzano, 14 Rho\n02/08/2016 15:43](https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+)\n"
+				+ "- [Via terrazzano, 14 Rho\n01/09/2016 15:43](https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+)\n"
+				+ "- [Via terrazzano, 14 Rho\n07/10/2016 15:43](https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+)\n";
 		assertEquals(expectedOutput, outputString4);
 
 	}

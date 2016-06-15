@@ -13,6 +13,7 @@ import com.pengrad.telegrambot.TelegramBotAdapter;
 import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 
@@ -57,7 +58,7 @@ public class BotResource extends ServerResource {
 
 			final String answer = cp.dispatcher().exec(message);
 			final TelegramBot bot = TelegramBotAdapter.build(Configs.INSTANCE.BOT_TOKEN);
-			final SendResponse response = bot.execute(new SendMessage(chat.id(), answer));
+			final SendResponse response = bot.execute(new SendMessage(chat.id(), answer).parseMode(ParseMode.Markdown));
 			getLogger().info("=> " + response);
 
 		}

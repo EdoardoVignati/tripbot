@@ -64,7 +64,9 @@ public class PRNextTest {
 		final IFunctionality myPRNext = new PRNext();
 		final String outputString2 = myPRNext.exec(myMessage);
 		assertEquals(
-				"Prossimo ritrovo:\n<a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho\n07/08/2016 15:43</a>",
+				"Prossimo ritrovo:\n" +
+				"[Via terrazzano, 14 Rho\n" +
+				"07/08/2016 15:43](https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+)",
 				outputString2);
 
 	}
@@ -125,7 +127,10 @@ public class PRNextTest {
 
 		final IFunctionality myPRNext = new PRNext();
 		final String outputString4 = myPRNext.exec(myMessage);
-		assertEquals("Prossimo ritrovo:\n<a href='https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+'>Via terrazzano, 14 Rho\n06/08/2016 15:43</a>", outputString4);
+		assertEquals(
+				"Prossimo ritrovo:\n" +
+				"[Via terrazzano, 14 Rho\n" +
+				"06/08/2016 15:43](https://www.google.it/maps/place/Via+Terrazzano,+14,+20017+Rho+MI,+Italy+)", outputString4);
 
 	}
 
