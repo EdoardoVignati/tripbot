@@ -23,7 +23,7 @@ public class PRRemove implements IFunctionality {
 			final List<PointOfInterest> myPRList = md.getPointOfInterestList(groupID);
 			String[] indexEntries = message.text().split(" ");
 
-			if (indexEntries.length <= 1) {
+			if (indexEntries.length == 1) {
 				String output = "Il programma del viaggio e' il seguente:\n";
 				for (PointOfInterest tmp : myPRList) {
 					output += i + " - " + tmp.name + " " + formatterData.format(tmp.meetDate) + "\n";
@@ -32,7 +32,7 @@ public class PRRemove implements IFunctionality {
 				return output;
 			} else {
 				for (int j = 2; j < indexEntries.length; j++)
-					md.removePointOfInterest(myPRList.get(Integer.parseInt(indexEntries[j])));
+					md.removePointOfInterest(myPRList.get(Integer.parseInt(indexEntries[j]) - 1));
 
 				return "Punto di ritrovo cancellato";
 			}

@@ -36,17 +36,16 @@ public class PRRemoveTest {
 	@Test
 	public void testPRremoveGetProgramIndex() throws Exception {
 
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43");
+		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/set_punto_ritrovo Rho 09/09/2017 15:43");
 		Mockito.when(myMessage.chat()).thenReturn(myChat);
 		Mockito.when(myChat.id()).thenReturn((long) -2);
 		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
 
 		final IFunctionality myPRSet = new PRSet();
 		myPRSet.exec(myMessage);
-
-		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Rho 09/09/2017 15:43");
 		myPRSet.exec(myMessage);
-
+		
 		final IFunctionality myPRRemove = new PRRemove();
 
 		Mockito.when(myMessage.text()).thenReturn("/remove");
@@ -72,6 +71,28 @@ public class PRRemoveTest {
 		final IFunctionality myPRRemove = new PRRemove();
 
 		Mockito.when(myMessage.text()).thenReturn("/remove 1");
+		final String outputString3 = myPRRemove.exec(myMessage);
+
+		assertEquals("Punto di ritrovo cancellato",outputString3);
+		
+	}
+	
+	@Test
+	public void testPRremoveMultiPoi() throws Exception {
+
+		Mockito.when(myMessage.text()).thenReturn("/set_punto_ritrovo Via terrazzano, 14 Rho 07/08/2016 15:43",
+				"/set_punto_ritrovo Via terrazzano, 14 Rho 12/08/2016 15:43");
+		Mockito.when(myMessage.chat()).thenReturn(myChat);
+		Mockito.when(myChat.id()).thenReturn((long) -2);
+		Mockito.when(myChat.type()).thenReturn(Chat.Type.Private);
+
+		final IFunctionality myPRSet = new PRSet();
+		myPRSet.exec(myMessage);
+		myPRSet.exec(myMessage);
+
+		final IFunctionality myPRRemove = new PRRemove();
+
+		Mockito.when(myMessage.text()).thenReturn("/remove 1 2");
 		final String outputString3 = myPRRemove.exec(myMessage);
 
 		assertEquals("Punto di ritrovo cancellato",outputString3);
