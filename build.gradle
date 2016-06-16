@@ -54,7 +54,7 @@ pitest {
 }
 
 shadowJar {
-    archiveName 'echobot.jar'
+    archiveName 'tripbot.jar'
 }
 
 task stage() {
