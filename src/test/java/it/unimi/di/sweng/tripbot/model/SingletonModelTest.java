@@ -15,8 +15,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import it.unimi.di.sweng.tripbot.PointOfInterest;
-import it.unimi.di.sweng.tripbot.Geolocalization.GmapsPosition;
+import it.unimi.di.sweng.tripbot.geolocalization.GmapsPosition;
+import it.unimi.di.sweng.tripbot.geolocalization.PointOfInterest;
 
 public class SingletonModelTest {
 	private static DateFormat dateFormat;

@@ -6,8 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
-import it.unimi.di.sweng.tripbot.CurrentModel;
-import it.unimi.di.sweng.tripbot.database.Model;
+import it.unimi.di.sweng.tripbot.database.DatabaseModel;
 
 public class CurrenModelTest {
 	@Rule
@@ -19,7 +18,7 @@ public class CurrenModelTest {
 		assertEquals(CurrentModel.getCurrentModel().getClass(), SingletonModel.class);
 		
 		CurrentModel.setPSQLModel();
-		assertEquals(CurrentModel.getCurrentModel().getClass(), Model.class);
+		assertEquals(CurrentModel.getCurrentModel().getClass(), DatabaseModel.class);
 	}
 
 }

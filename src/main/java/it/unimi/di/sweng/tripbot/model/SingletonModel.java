@@ -6,8 +6,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
-import it.unimi.di.sweng.tripbot.IModel;
-import it.unimi.di.sweng.tripbot.PointOfInterest;
+import it.unimi.di.sweng.tripbot.geolocalization.PointOfInterest;
 
 public enum SingletonModel implements IModel {
 	INSTANCE;

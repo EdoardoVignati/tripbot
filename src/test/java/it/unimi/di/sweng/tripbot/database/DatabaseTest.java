@@ -10,7 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
-import it.unimi.di.sweng.tripbot.Configs;
+import it.unimi.di.sweng.tripbot.server.Configs;
 
 public class DatabaseTest {
 
