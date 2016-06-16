@@ -39,9 +39,10 @@ repositories {
 }
 
 dependencies {
+    compile 'org.postgresql:postgresql:9.3-1101-jdbc4'
     compile 'org.restlet.jse:org.restlet:2.3.6'
     compile 'org.restlet.jse:org.restlet.ext.jackson:2.3.6'
-    compile 'com.github.pengrad:java-telegram-bot-api:2.0.1'
+    compile 'com.github.pengrad:java-telegram-bot-api:2.1.1'
     compile 'com.google.maps:google-maps-services:0.1.14'
     testCompile 'junit:junit:4.12'
     testCompile 'com.github.stefanbirkner:system-rules:1.16.0'
@@ -53,7 +54,7 @@ pitest {
 }
 
 shadowJar {
-    archiveName 'echobot.jar'
+    archiveName 'tripbot.jar'
 }
 
 task stage() {
