@@ -16,7 +16,7 @@ public enum Configs {
 
 	private Configs() {
 		Locale.setDefault(Locale.US);	
-		PORT = Integer.parseInt(System.getenv("SERVER_PORT"));
+		PORT = Integer.parseInt(System.getenv("PORT"));
 		SERVER_TOKEN = System.getenv("TELEGRAM_SERVER_TOKEN");
 		BOT_TOKEN = System.getenv("TELEGRAM_BOT_TOKEN");
 		GOOGLE_TOKEN = System.getenv("GOOGLE_API_TOKEN");
